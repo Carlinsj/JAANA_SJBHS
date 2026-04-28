@@ -1751,7 +1751,7 @@ export function AdminSiteContentPage({ details, onContentSaved }: AdminSiteConte
     selectedCauseIndex !== null ? editableContent.causeCards[selectedCauseIndex] ?? null : selectedCause;
 
   return (
-    <div className="site-shell admin-site-shell">
+    <div className={`site-shell admin-site-shell ${activeTab === "connect" ? "is-connect-view" : ""}`}>
       <a className="skip-link" href="#admin-main-content">
         Skip to main content
       </a>

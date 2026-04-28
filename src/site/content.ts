@@ -18,7 +18,7 @@ import type {
 
 const albumAssetVersion = "2026-04-15-1";
 const defaultConnectSponsorMessage =
-  "We are seeking sponsors for our North America Connect reunion, your brand/business will have the opportunity to reach hundreds of successful Josephites and their families. Proceeds from the event will fund the OBA Teachers Insurance program. Individual and batch benefactors are also warmly welcome.";
+  "We are seeking sponsors for our North America Connect reunion. Your brand or business will have the opportunity to reach hundreds of successful Josephites and their families. Proceeds from the event will fund the OBA Teachers Insurance Program. Individual and batch benefactors are also warmly welcome.";
 
 const withAlbumAssetVersion = (image: GalleryImage): GalleryImage =>
   image.src.startsWith("/assets/albums/")
@@ -56,9 +56,9 @@ export const tabs: TabConfig[] = [
     id: "connect",
     label: "North America Connect 2026",
     kicker: "North America Connect 2026",
-    title: "North America Connect 2026 is the next major alumni gathering across North America.",
+    title: "North America Connect 2026",
     copy:
-      "Save the date for the September 2026 reunion weekend, review sponsor information, and browse event albums from across the OBA community."
+      "Dust off your school spirit and get ready for a weekend of pure nostalgia. Join us this September 19th and 20th for a spectacular gathering of Josephites from across North America. From a high-energy gala night to a classic school-style picnic, we are bringing the best of St Joseph's to Northern Virginia.\n\nEven better? Every ticket helps us give back. Proceeds from the event will support the SJBHS OBA Teachers Insurance Program, ensuring we take care of the mentors who shaped us."
   },
   {
     id: "contact",
@@ -106,12 +106,12 @@ export const priorityCards: PriorityCard[] = [
   {
     title: "North America Connect 2026",
     body:
-      "North America Connect 2026 is the next major gathering point for alumni and families across North America, with sponsorship opportunities already open.",
+      "North America Connect 2026 brings Josephites across North America to Northern Virginia for a Saturday gala night and Sunday picnic weekend.",
     points: [
       "Washington, D.C. metro area",
-      "Saturday Dinner and Sunday Picnic Lunch",
-      "100+ in-person attendees and 300+ online reach",
-      "Call to Sponsors document and contacts"
+      "Saturday dinner and dancing",
+      "Sunday picnic lunch and games",
+      "Tickets and sponsorship both support the SJBHS OBA Teachers Insurance Program"
     ],
     cta: "Open North America Connect 2026",
     tab: "connect"
@@ -834,25 +834,113 @@ export const sponsorMaterials: GalleryImage[] = [
 
 export const connectPlaceholders: SecondaryPage[] = [
   {
-    title: "Registration",
-    body: "Details coming soon."
+    title: "Pricing",
+    body:
+      "Early Bird Pricing (through June 15th 2026): Adult (13+) Full Event $80; Adult (13+) Dinner Only $60; Adult (13+) Picnic Only $30. Regular Pricing (June 15th - Aug 31st 2026): Adult (13+) Full Event $100; Adult (13+) Dinner Only $70; Adult (13+) Picnic Only $40. Full Time University Students (SJBHS Alumni) and kids 12 and under are free with registration."
   },
   {
-    title: "Buy tickets",
-    body: "Ticketing details will be published here once pricing, registration flow, and batch allocations are finalized."
+    title: "Schedule",
+    body:
+      "Cocktails, Dinner and Dancing: Saturday, September 19th 2026, 6:30pm - 2am at All Go Rhythms Bar & Restaurant. Picnic Lunch and Games: Sunday, September 20th 2026, 11am - 4pm at Lake Fairfax Park, Canopy G."
   },
   {
-    title: "Venue and lodging",
-    body: "Venue confirmation, hotel block details, and local travel guidance for out-of-town attendees will be added here."
+    title: "Travel and Stay",
+    body:
+      "Recommended airport: IAD. Other airports: DCA and BWI. Hotel block details, hotel name, address, contact, and courtesy block date will be published as they are finalized."
   },
   {
-    title: "Weekend schedule",
-    body: "The detailed Saturday and Sunday programme will be shared here as the event schedule is finalized."
+    title: "Merchandise and Attractions",
+    body:
+      "Josephite merchandise details will be available soon. Local attractions include monuments, Smithsonian museums, Old Town Alexandria, Georgetown, National Harbor, restaurants, wineries, historic districts, trails, nature centers, and DC nightlife."
   }
 ];
 
 export const defaultConnectPageContent: ConnectPageContent = {
   sponsorMessage: defaultConnectSponsorMessage,
+  detailLinks: ["Pricing", "Schedule", "Travel", "Stay", "Josephite Merchandise", "Local Attractions"],
+  pricing: [
+    {
+      title: "Early Bird Pricing",
+      period: "Through June 15th 2026",
+      options: ["Adult (13+) Full Event: $80", "Adult (13+) Dinner Only: $60", "Adult (13+) Picnic Only: $30"]
+    },
+    {
+      title: "Regular Pricing",
+      period: "June 15th - Aug 31st 2026",
+      options: ["Adult (13+) Full Event: $100", "Adult (13+) Dinner Only: $70", "Adult (13+) Picnic Only: $40"]
+    }
+  ],
+  complimentaryTickets: [
+    "Full Time University Students (SJBHS Alumni): Free (Registration Required)",
+    "Kids (12 and under): Free (Registration Required)"
+  ],
+  travel: {
+    recommendedAirport: "IAD",
+    discountLabel: "Exclusive United Airlines Discount for Josephites",
+    discountHref: "",
+    otherAirports: ["DCA", "BWI"]
+  },
+  stay: {
+    hotelBlockLabel: "Exclusive hotel-block link",
+    hotelBlockHref: "",
+    hotelName: "Hotel details coming soon",
+    address: "Address coming soon",
+    contact: "Contact coming soon",
+    courtesyBlock: "Courtesy hotel block available on a first come basis through a date to be announced.",
+    shuttle: "Complimentary shuttle to and from IAD."
+  },
+  schedule: [
+    {
+      title: "Cocktails, Dinner and Dancing",
+      dateTime: "Saturday, September 19th 2026, 6:30pm - 2am",
+      venue: "All Go Rhythms Bar & Restaurant",
+      address: "21035 Dulles Town Cir, Sterling, VA 20166",
+      highlights: ["Dancefloor", "DJ", "Photobooth", "Buffet and Live Counters", "Cash Bar", "Josephite Merchandise"]
+    },
+    {
+      title: "Picnic Lunch and Games",
+      dateTime: "Sunday, September 20th 2026, 11am - 4pm",
+      venue: "Lake Fairfax Park, Canopy G",
+      address: "Reston, VA 20190",
+      highlights: ["Soccer", "Tug of War", "Games for Adults and Kids", "More"]
+    }
+  ],
+  merchandise: {
+    body: "Merchandise details will be available soon.",
+    preorder:
+      "Visit here after Aug 1st to pre-order your merchandise before the event and pick up during the reunion. Limited supplies."
+  },
+  attractions: [
+    "Monuments & Memorials",
+    "Smithsonian Museums",
+    "Old Town Alexandria & Georgetown",
+    "National Harbor",
+    "Michelin Star Restaurants",
+    "Wineries & Craft Breweries",
+    "Historic Districts",
+    "Trails & Nature Centers",
+    "DC Nightlife"
+  ],
+  sponsorDetails: [
+    "Corporate Sponsorship: Perfect for promoting your brand/business to hundreds of Josephites.",
+    "Individual Sponsorship: A great way to contribute in your personal capacity.",
+    "Batch Sponsorship: Team up with classmates to sponsor as a group, such as The Class of '08.",
+    "Additional advertising add-ons are available for DJ/Music sponsors, Swag Bag Sponsor, Cocktail Bar sponsor, Photobooth sponsor, and more.",
+    "Whether you choose to advertise a business or simply give back to our teachers, your support makes a massive difference."
+  ],
+  sponsorTiers: [
+    { title: "Gold Sponsors", amount: "$1500+" },
+    { title: "Silver Sponsors", amount: "$1000 - $1499" },
+    { title: "Bronze Sponsors", amount: "$500 - $999" }
+  ],
+  sponsors: [
+    {
+      name: "Sponsor name coming soon",
+      website: "",
+      logoSrc: "/assets/oba-connect-mark.png",
+      logoAlt: "North America Connect sponsor placeholder"
+    }
+  ],
   placeholders: connectPlaceholders
 };
 

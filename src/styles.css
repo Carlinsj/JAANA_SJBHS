@@ -117,6 +117,13 @@ img {
   position: relative;
 }
 
+.site-shell.is-connect-view {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(19, 53, 127, 0.1), transparent 24%),
+    linear-gradient(180deg, #f8fafc 0%, #eff3f8 52%, #edf1f5 100%);
+}
+
 .site-header,
 .hero-section,
 .overview-shell,
@@ -819,6 +826,545 @@ img {
 #connect-panel .subpage-copy h2 {
   margin-top: 0;
   font-size: clamp(1.75rem, 3.4vw, 2.55rem);
+}
+
+.connect-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+  gap: 1rem;
+  align-items: stretch;
+  margin-bottom: 1.15rem;
+}
+
+.connect-hero-copy,
+.connect-event-panel,
+.connect-detail-nav,
+.connect-section {
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.connect-hero-copy {
+  display: grid;
+  align-content: center;
+  min-height: 33rem;
+  padding: clamp(1.2rem, 3vw, 2.4rem);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 252, 255, 0.96));
+}
+
+.connect-kicker {
+  margin: 0 0 0.8rem;
+  color: rgba(19, 53, 127, 0.68);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.connect-hero-copy h2 {
+  margin: 0;
+  color: var(--navy-deep);
+  font-family: Georgia, "Baskerville", "Times New Roman", serif;
+  font-size: clamp(2.3rem, 5.8vw, 4.65rem);
+  line-height: 0.98;
+}
+
+.connect-hero-body {
+  max-width: 49rem;
+  margin-top: 1rem;
+}
+
+.connect-hero-body p {
+  margin: 0.85rem 0 0;
+}
+
+.connect-hero-actions,
+.connect-sponsor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.connect-pdf-link {
+  margin-left: 0.15rem;
+  font-weight: 800;
+}
+
+.connect-event-panel {
+  display: grid;
+  grid-template-rows: minmax(14rem, 1fr) auto;
+  gap: 0.75rem;
+  min-height: 33rem;
+  padding: 0.75rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.connect-event-photo {
+  min-height: 16rem;
+  overflow: hidden;
+  border-radius: calc(var(--radius-xl) - 12px);
+  background: var(--sky);
+}
+
+.connect-event-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 16rem;
+  object-fit: cover;
+}
+
+.connect-detail-nav {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.connect-detail-nav > span {
+  color: var(--navy-deep);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.connect-detail-nav div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.connect-detail-nav a,
+.connect-inline-list span,
+.connect-attraction-grid span,
+.connect-free-grid p,
+.connect-coming-soon {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 2.1rem;
+  padding: 0.38rem 0.68rem;
+  border: 1px solid rgba(19, 53, 127, 0.12);
+  border-radius: 999px;
+  color: var(--navy-deep);
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.connect-detail-nav a:hover {
+  color: #ffffff;
+  background: var(--navy);
+}
+
+.connect-section {
+  scroll-margin-top: 9rem;
+  margin-top: 1rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 252, 255, 0.96));
+}
+
+.connect-section h3,
+.connect-info-panel h3,
+.connect-pricing-card h4,
+.connect-schedule-card h4,
+.connect-tier-detail h4,
+.connect-sponsor-list h4 {
+  margin: 0;
+  color: var(--navy-deep);
+  font-family: Georgia, "Baskerville", "Times New Roman", serif;
+  line-height: 1.12;
+}
+
+.connect-section h3 {
+  font-size: clamp(1.45rem, 2.7vw, 2rem);
+}
+
+.connect-pricing-grid,
+.connect-schedule-grid,
+.connect-logistics,
+.connect-extras,
+.connect-sponsor-section {
+  display: grid;
+  gap: 1rem;
+}
+
+.connect-pricing-grid,
+.connect-schedule-grid,
+.connect-logistics,
+.connect-extras {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.connect-pricing-grid {
+  margin-top: 1rem;
+}
+
+.connect-pricing-card,
+.connect-schedule-card,
+.connect-info-panel,
+.connect-tier-detail,
+.connect-sponsor-card {
+  border: 1px solid rgba(19, 53, 127, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.connect-pricing-card {
+  padding: 1rem;
+}
+
+.connect-price-period {
+  margin: 0 0 0.45rem;
+  color: rgba(19, 53, 127, 0.68);
+  font-size: 0.84rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.connect-pricing-card h4,
+.connect-schedule-card h4,
+.connect-tier-detail h4 {
+  font-size: 1.25rem;
+}
+
+.connect-pricing-card ul {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.connect-pricing-card li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(19, 53, 127, 0.1);
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.connect-free-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.8rem;
+}
+
+.connect-free-grid p,
+.connect-coming-soon {
+  margin: 0;
+  color: var(--success);
+  background: rgba(27, 109, 81, 0.09);
+  border-color: rgba(27, 109, 81, 0.18);
+}
+
+.connect-schedule-grid {
+  margin-top: 1rem;
+}
+
+.connect-schedule-card {
+  position: relative;
+  min-height: 20rem;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.connect-card-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  color: #ffffff;
+  background: var(--navy);
+  font-weight: 900;
+}
+
+.connect-card-time {
+  color: var(--navy);
+  font-weight: 900;
+}
+
+.connect-schedule-card p,
+.connect-info-panel p,
+.connect-tier-detail p {
+  margin: 0.62rem 0 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.connect-chip-list,
+.connect-dialog-tier-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.9rem;
+}
+
+.connect-chip-list span,
+.connect-dialog-tier-strip span {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.34rem 0.62rem;
+  border-radius: 999px;
+  color: var(--navy-deep);
+  background: var(--sky);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.connect-info-panel {
+  scroll-margin-top: 9rem;
+  padding: 1rem;
+}
+
+.connect-detail-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.95rem 0 0;
+}
+
+.connect-detail-list div {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.82rem 0.9rem;
+  border: 1px solid rgba(19, 53, 127, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.connect-detail-list dt {
+  color: var(--navy-deep);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.connect-detail-list dd {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.connect-logistics {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+}
+
+.connect-logistics .connect-info-panel {
+  min-height: 0;
+}
+
+.connect-travel-panel .connect-detail-list,
+.connect-stay-panel .connect-detail-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.connect-travel-panel .connect-detail-list div:first-child {
+  grid-column: 1 / -1;
+  background:
+    linear-gradient(135deg, rgba(19, 53, 127, 0.08), rgba(231, 238, 252, 0.72));
+}
+
+.connect-travel-panel .connect-detail-list div:first-child dd {
+  color: var(--navy-deep);
+  font-family: Georgia, "Baskerville", "Times New Roman", serif;
+  font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 0.95;
+}
+
+.connect-stay-panel .connect-detail-list div:first-child,
+.connect-stay-panel .connect-detail-list div:nth-child(5),
+.connect-stay-panel .connect-detail-list div:nth-child(6) {
+  grid-column: 1 / -1;
+}
+
+.connect-inline-list,
+.connect-attraction-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.connect-attraction-grid {
+  margin-top: 1rem;
+}
+
+.connect-extras {
+  grid-template-columns: 1fr;
+  margin-bottom: 2.2rem;
+}
+
+.connect-attractions-panel {
+  scroll-margin-top: 10rem;
+}
+
+.connect-attraction-grid span {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.connect-sponsor-section {
+  grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1.1fr);
+  align-items: start;
+  margin-top: 2rem;
+}
+
+.connect-sponsor-copy {
+  min-width: 0;
+}
+
+.connect-tier-panel {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.connect-tier-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.connect-tier-detail {
+  padding: 1rem;
+}
+
+.connect-sponsor-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.connect-sponsor-list h4 {
+  font-size: 1.15rem;
+}
+
+.connect-sponsor-card {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.85rem;
+}
+
+.connect-sponsor-logo {
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(19, 53, 127, 0.1);
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.connect-sponsor-logo img {
+  max-width: 78%;
+  max-height: 78%;
+  object-fit: contain;
+}
+
+.connect-sponsor-card h5 {
+  margin: 0;
+  color: var(--navy-deep);
+  font-size: 1rem;
+}
+
+.connect-admin-field-stack {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+}
+
+.zeffy-dialog-shell.connect-zeffy-shell {
+  width: min(860px, calc(100vw - 2rem));
+}
+
+.connect-zeffy-dialog {
+  align-items: center;
+}
+
+.zeffy-dialog-shell.connect-zeffy-shell.is-sponsor {
+  width: min(1040px, calc(100vw - 2rem));
+}
+
+.connect-zeffy-header {
+  position: relative;
+  top: auto;
+  padding-bottom: 1rem;
+}
+
+.connect-zeffy-embed {
+  padding: 0.8rem clamp(0.85rem, 1.8vw, 1.25rem) clamp(1rem, 1.8vw, 1.35rem);
+}
+
+.connect-zeffy-frame {
+  display: block;
+  width: 100%;
+  height: min(74dvh, 760px);
+  border: 0;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.connect-zeffy-shell.is-sponsor .connect-zeffy-frame {
+  height: min(66dvh, 640px);
+}
+
+.connect-dialog-sponsor-context {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 2vw, 1.5rem) 0;
+}
+
+.connect-dialog-sponsor-context ul {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 1rem 1rem 1rem 2rem;
+  border: 1px solid rgba(19, 53, 127, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.connect-dialog-tier-strip span {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.connect-thermometer-frame {
+  position: relative;
+  overflow: hidden;
+  min-height: 120px;
+  border: 1px solid rgba(19, 53, 127, 0.1);
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.connect-thermometer-frame iframe {
+  width: 100%;
+  height: 120px;
+  border: 0;
 }
 
 .subpage-copy h2 {
@@ -2092,6 +2638,29 @@ img {
 
 @media (max-width: 900px) {
   #connect-panel .subpage-copy.connect-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-hero,
+  .connect-pricing-grid,
+  .connect-schedule-grid,
+  .connect-logistics,
+  .connect-extras,
+  .connect-sponsor-section {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-hero-copy,
+  .connect-event-panel {
+    min-height: 0;
+  }
+
+  .connect-detail-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-travel-panel .connect-detail-list,
+  .connect-stay-panel .connect-detail-list {
     grid-template-columns: 1fr;
   }
 }
@@ -4168,13 +4737,13 @@ img {
 .zeffy-dialog {
   position: fixed;
   inset: 0;
-  z-index: 92;
+  z-index: 1000;
   display: grid;
   align-items: start;
   justify-items: center;
   overflow-y: auto;
   padding: clamp(1rem, 2.5vw, 2rem);
-  background: rgba(12, 20, 37, 0.82);
+  background: rgba(12, 20, 37, 0.9);
   backdrop-filter: blur(12px);
 }
 
@@ -5228,6 +5797,15 @@ a:focus-visible {
     padding: 0.5rem;
   }
 
+  .connect-zeffy-frame {
+    height: 78dvh;
+    border-radius: 12px;
+  }
+
+  .connect-zeffy-shell.is-sponsor .connect-zeffy-frame {
+    height: 66dvh;
+  }
+
   .cause-dialog-close {
     top: 1rem;
     right: 1rem;
@@ -5568,6 +6146,27 @@ a:focus-visible {
   .hero-actions .secondary-button {
     min-height: 2.9rem;
     padding: 0 1rem;
+  }
+
+  .connect-hero-actions,
+  .connect-sponsor-actions {
+    align-items: stretch;
+  }
+
+  .connect-hero-actions .primary-button,
+  .connect-hero-actions .secondary-button,
+  .connect-sponsor-actions .primary-button,
+  .connect-sponsor-actions .secondary-button {
+    width: 100%;
+  }
+
+  .connect-sponsor-card {
+    grid-template-columns: 3.75rem minmax(0, 1fr);
+  }
+
+  .connect-sponsor-logo {
+    width: 3.75rem;
+    height: 3.75rem;
   }
 
   .impact-strip,

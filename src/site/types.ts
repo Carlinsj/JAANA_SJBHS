@@ -126,8 +126,67 @@ export type SecondaryPage = {
   body: string;
 };
 
+export type ConnectPricingGroup = {
+  title: string;
+  period: string;
+  options: string[];
+};
+
+export type ConnectTravelContent = {
+  recommendedAirport: string;
+  discountLabel: string;
+  discountHref: string;
+  otherAirports: string[];
+};
+
+export type ConnectStayContent = {
+  hotelBlockLabel: string;
+  hotelBlockHref: string;
+  hotelName: string;
+  address: string;
+  contact: string;
+  courtesyBlock: string;
+  shuttle: string;
+};
+
+export type ConnectScheduleItem = {
+  title: string;
+  dateTime: string;
+  venue: string;
+  address: string;
+  highlights: string[];
+};
+
+export type ConnectMerchandiseContent = {
+  body: string;
+  preorder: string;
+};
+
+export type ConnectSponsorPageTier = {
+  title: string;
+  amount: string;
+};
+
+export type ConnectSponsorEntry = {
+  name: string;
+  website: string;
+  logoSrc: string;
+  logoAlt: string;
+};
+
 export type ConnectPageContent = {
   sponsorMessage: string;
+  detailLinks: string[];
+  pricing: ConnectPricingGroup[];
+  complimentaryTickets: string[];
+  travel: ConnectTravelContent;
+  stay: ConnectStayContent;
+  schedule: ConnectScheduleItem[];
+  merchandise: ConnectMerchandiseContent;
+  attractions: string[];
+  sponsorDetails: string[];
+  sponsorTiers: ConnectSponsorPageTier[];
+  sponsors: ConnectSponsorEntry[];
   placeholders: SecondaryPage[];
 };
 

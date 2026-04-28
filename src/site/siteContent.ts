@@ -2,6 +2,13 @@ import type {
   AlbumFolder,
   ConnectPageCopy,
   ConnectPageContent,
+  ConnectMerchandiseContent,
+  ConnectPricingGroup,
+  ConnectScheduleItem,
+  ConnectSponsorEntry,
+  ConnectSponsorPageTier,
+  ConnectStayContent,
+  ConnectTravelContent,
   ContactChannel,
   CauseCard,
   CausesPageCopy,
@@ -51,10 +58,10 @@ export const defaultHomeCopy: HomePageCopy = {
   donateCardTitle: "Donate",
   donateCardBody: "Review giving routes on the Donate page, then use Contact Us if you need help with a gift.",
   connectCardTitle: "North America Connect 2026",
-  connectCardBody: "Check sponsor details and reunion updates for the September 2026 weekend.",
+  connectCardBody: "Register, sponsor, or review the full September 2026 reunion weekend details.",
   eventsTitle: "Upcoming JAANA events | Past JAANA events",
   upcomingEventsTitle: "Upcoming JAANA events",
-  upcomingEventsBody: "North America Connect 2026 | September 19-20, 2026 | Washington DC & Northern Virginia.",
+  upcomingEventsBody: "North America Connect 2026 | September 19-20, 2026 | Northern Virginia and the Washington, D.C. metro area.",
   pastEventsTitle: "Past JAANA events",
   pastEventsBody: "Browse past OBA and Connect event albums in a dialog view."
 };
@@ -76,11 +83,11 @@ export const defaultConnectCopy: ConnectPageCopy = {
   posterLabel: "Save the Date",
   posterTitle: "North America Connect 2026",
   posterBody: "Washington, D.C. metro area | Saturday Dinner | Sunday Picnic Lunch | September 19-20, 2026",
-  sponsorHeading: "Support North America Connect 2026.",
+  sponsorHeading: "Sponsor North America Connect 2026",
   sponsorBody:
-    "We are seeking sponsors for our North America Connect reunion, your brand/business will have the opportunity to reach hundreds of successful Josephites and their families. Proceeds from the event will fund the OBA Teachers Insurance program. Individual and batch benefactors are also warmly welcome.",
-  scheduleHeading: "Save the date for the North America Connect 2026 weekend.",
-  scheduleBody: "Takes place September 19-20, 2026."
+    "We are seeking sponsors for our North America Connect reunion. Your brand or business will have the opportunity to reach hundreds of successful Josephites and their families. Proceeds from the event will fund the OBA Teachers Insurance Program. Individual and batch benefactors are also warmly welcome.",
+  scheduleHeading: "Register Today for the North America Connect 2026 Reunion",
+  scheduleBody: "Find pricing, schedule, travel, stay, Josephite merchandise, and local attraction details below."
 };
 
 const makeAlbumKey = (album: Partial<EventAlbum> | undefined, folderId: string, index: number) => {
@@ -306,15 +313,141 @@ function normalizeConnectCopy(copy: Partial<ConnectPageCopy> | undefined): Conne
   };
 }
 
+function normalizeStringArray(value: unknown, fallback: string[]): string[] {
+  const values = Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === "string" && Boolean(item.trim())).map((item) => item.trim())
+    : [];
+
+  return values.length ? values : fallback;
+}
+
+function normalizePricingGroup(
+  group: Partial<ConnectPricingGroup> | undefined,
+  fallback: ConnectPricingGroup
+): ConnectPricingGroup {
+  return {
+    title: typeof group?.title === "string" && group.title.trim() ? group.title.trim() : fallback.title,
+    period: typeof group?.period === "string" && group.period.trim() ? group.period.trim() : fallback.period,
+    options: normalizeStringArray(group?.options, fallback.options)
+  };
+}
+
+function normalizeTravelContent(
+  travel: Partial<ConnectTravelContent> | undefined,
+  fallback: ConnectTravelContent
+): ConnectTravelContent {
+  return {
+    recommendedAirport:
+      typeof travel?.recommendedAirport === "string" && travel.recommendedAirport.trim()
+        ? travel.recommendedAirport.trim()
+        : fallback.recommendedAirport,
+    discountLabel:
+      typeof travel?.discountLabel === "string" && travel.discountLabel.trim()
+        ? travel.discountLabel.trim()
+        : fallback.discountLabel,
+    discountHref: typeof travel?.discountHref === "string" ? travel.discountHref.trim() : fallback.discountHref,
+    otherAirports: normalizeStringArray(travel?.otherAirports, fallback.otherAirports)
+  };
+}
+
+function normalizeStayContent(stay: Partial<ConnectStayContent> | undefined, fallback: ConnectStayContent): ConnectStayContent {
+  return {
+    hotelBlockLabel:
+      typeof stay?.hotelBlockLabel === "string" && stay.hotelBlockLabel.trim()
+        ? stay.hotelBlockLabel.trim()
+        : fallback.hotelBlockLabel,
+    hotelBlockHref: typeof stay?.hotelBlockHref === "string" ? stay.hotelBlockHref.trim() : fallback.hotelBlockHref,
+    hotelName: typeof stay?.hotelName === "string" && stay.hotelName.trim() ? stay.hotelName.trim() : fallback.hotelName,
+    address: typeof stay?.address === "string" && stay.address.trim() ? stay.address.trim() : fallback.address,
+    contact: typeof stay?.contact === "string" && stay.contact.trim() ? stay.contact.trim() : fallback.contact,
+    courtesyBlock:
+      typeof stay?.courtesyBlock === "string" && stay.courtesyBlock.trim()
+        ? stay.courtesyBlock.trim()
+        : fallback.courtesyBlock,
+    shuttle: typeof stay?.shuttle === "string" && stay.shuttle.trim() ? stay.shuttle.trim() : fallback.shuttle
+  };
+}
+
+function normalizeScheduleItem(
+  item: Partial<ConnectScheduleItem> | undefined,
+  fallback: ConnectScheduleItem
+): ConnectScheduleItem {
+  return {
+    title: typeof item?.title === "string" && item.title.trim() ? item.title.trim() : fallback.title,
+    dateTime: typeof item?.dateTime === "string" && item.dateTime.trim() ? item.dateTime.trim() : fallback.dateTime,
+    venue: typeof item?.venue === "string" && item.venue.trim() ? item.venue.trim() : fallback.venue,
+    address: typeof item?.address === "string" && item.address.trim() ? item.address.trim() : fallback.address,
+    highlights: normalizeStringArray(item?.highlights, fallback.highlights)
+  };
+}
+
+function normalizeMerchandiseContent(
+  merchandise: Partial<ConnectMerchandiseContent> | undefined,
+  fallback: ConnectMerchandiseContent
+): ConnectMerchandiseContent {
+  return {
+    body: typeof merchandise?.body === "string" && merchandise.body.trim() ? merchandise.body.trim() : fallback.body,
+    preorder:
+      typeof merchandise?.preorder === "string" && merchandise.preorder.trim()
+        ? merchandise.preorder.trim()
+        : fallback.preorder
+  };
+}
+
+function normalizeSponsorPageTier(
+  tier: Partial<ConnectSponsorPageTier> | undefined,
+  fallback: ConnectSponsorPageTier
+): ConnectSponsorPageTier {
+  return {
+    title: typeof tier?.title === "string" && tier.title.trim() ? tier.title.trim() : fallback.title,
+    amount: typeof tier?.amount === "string" && tier.amount.trim() ? tier.amount.trim() : fallback.amount
+  };
+}
+
+function normalizeSponsorEntry(
+  sponsor: Partial<ConnectSponsorEntry> | undefined,
+  fallback: ConnectSponsorEntry
+): ConnectSponsorEntry {
+  return {
+    name: typeof sponsor?.name === "string" && sponsor.name.trim() ? sponsor.name.trim() : fallback.name,
+    website: typeof sponsor?.website === "string" ? sponsor.website.trim() : fallback.website,
+    logoSrc: typeof sponsor?.logoSrc === "string" && sponsor.logoSrc.trim() ? sponsor.logoSrc.trim() : fallback.logoSrc,
+    logoAlt: typeof sponsor?.logoAlt === "string" && sponsor.logoAlt.trim() ? sponsor.logoAlt.trim() : fallback.logoAlt
+  };
+}
+
 function normalizeConnectPageContent(content: Partial<ConnectPageContent> | undefined): ConnectPageContent {
   const fallback = defaultConnectPageContent;
   const placeholderCount = Math.max(content?.placeholders?.length ?? 0, fallback.placeholders.length);
+  const pricingCount = Math.max(content?.pricing?.length ?? 0, fallback.pricing.length);
+  const scheduleCount = Math.max(content?.schedule?.length ?? 0, fallback.schedule.length);
+  const sponsorTierCount = Math.max(content?.sponsorTiers?.length ?? 0, fallback.sponsorTiers.length);
+  const sponsorCount = Math.max(content?.sponsors?.length ?? 0, fallback.sponsors.length);
 
   return {
     sponsorMessage:
       typeof content?.sponsorMessage === "string" && content.sponsorMessage.trim()
         ? content.sponsorMessage.trim()
         : fallback.sponsorMessage,
+    detailLinks: normalizeStringArray(content?.detailLinks, fallback.detailLinks),
+    pricing: Array.from({ length: pricingCount }, (_, index) =>
+      normalizePricingGroup(content?.pricing?.[index], fallback.pricing[index] ?? fallback.pricing[0])
+    ),
+    complimentaryTickets: normalizeStringArray(content?.complimentaryTickets, fallback.complimentaryTickets),
+    travel: normalizeTravelContent(content?.travel, fallback.travel),
+    stay: normalizeStayContent(content?.stay, fallback.stay),
+    schedule: Array.from({ length: scheduleCount }, (_, index) =>
+      normalizeScheduleItem(content?.schedule?.[index], fallback.schedule[index] ?? fallback.schedule[0])
+    ),
+    merchandise: normalizeMerchandiseContent(content?.merchandise, fallback.merchandise),
+    attractions: normalizeStringArray(content?.attractions, fallback.attractions),
+    sponsorDetails: normalizeStringArray(content?.sponsorDetails, fallback.sponsorDetails),
+    sponsorTiers: Array.from({ length: sponsorTierCount }, (_, index) =>
+      normalizeSponsorPageTier(content?.sponsorTiers?.[index], fallback.sponsorTiers[index] ?? fallback.sponsorTiers[0])
+    ),
+    sponsors: Array.from({ length: sponsorCount }, (_, index) =>
+      normalizeSponsorEntry(content?.sponsors?.[index], fallback.sponsors[index] ?? fallback.sponsors[0])
+    ),
     placeholders: Array.from({ length: placeholderCount }, (_, index) => {
       const item = content?.placeholders?.[index];
 

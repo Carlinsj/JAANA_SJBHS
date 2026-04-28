@@ -686,7 +686,7 @@ function App() {
   }
 
   return (
-    <div className="site-shell">
+    <div className={`site-shell ${activeTab === "connect" ? "is-connect-view" : ""}`}>
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
