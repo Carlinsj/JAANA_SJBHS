@@ -119,6 +119,7 @@ img {
 
 .site-shell.is-connect-view {
   min-height: 100vh;
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom));
   background:
     radial-gradient(circle at 88% 8%, rgba(19, 53, 127, 0.1), transparent 24%),
     linear-gradient(180deg, #f8fafc 0%, #eff3f8 52%, #edf1f5 100%);
@@ -889,9 +890,27 @@ img {
   margin-top: 1.25rem;
 }
 
-.connect-pdf-button {
+.connect-register-button {
   width: fit-content;
   font-weight: 800;
+}
+
+.connect-floating-register {
+  position: fixed;
+  right: max(1.25rem, env(safe-area-inset-right));
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  z-index: 80;
+  min-height: 3.35rem;
+  padding-inline: 1.45rem;
+  font-size: 0.96rem;
+  font-weight: 900;
+  box-shadow:
+    0 8px 18px rgba(19, 53, 127, 0.22),
+    0 24px 58px rgba(19, 53, 127, 0.36);
+}
+
+.connect-floating-register:hover {
+  transform: translateY(-4px);
 }
 
 .connect-event-panel {
@@ -2825,6 +2844,18 @@ img {
 
   .connect-detail-nav {
     grid-template-columns: 1fr;
+    gap: 0.7rem;
+    border-radius: 24px;
+  }
+
+  .connect-detail-nav div {
+    gap: 0.5rem;
+  }
+
+  .connect-detail-nav a {
+    min-height: 2.75rem;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
   }
 
   .connect-travel-secondary {
@@ -5978,6 +6009,59 @@ a:focus-visible {
     height: 66dvh;
   }
 
+  .connect-hero-copy,
+  .connect-event-panel,
+  .connect-section {
+    border-radius: 24px;
+  }
+
+  .connect-hero-copy {
+    padding: 1.35rem 1.25rem;
+  }
+
+  .connect-hero-copy h2 {
+    font-size: clamp(2.3rem, 10.5vw, 3.4rem);
+    line-height: 0.98;
+  }
+
+  .connect-hero-body {
+    margin-top: 1.15rem;
+  }
+
+  .connect-hero-body p {
+    font-size: 1rem;
+    line-height: 1.62;
+  }
+
+  .connect-event-panel {
+    gap: 0.55rem;
+    padding: 0.55rem;
+  }
+
+  .connect-event-photo,
+  .connect-event-photo img {
+    min-height: 13.5rem;
+  }
+
+  .connect-date-panel {
+    border-radius: 20px;
+  }
+
+  .connect-date-meta {
+    gap: 0.42rem;
+  }
+
+  .connect-date-meta span {
+    min-height: 2.45rem;
+    align-items: center;
+  }
+
+  .connect-floating-register {
+    right: max(0.75rem, env(safe-area-inset-right));
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    min-height: 3.4rem;
+  }
+
   .cause-dialog-close {
     top: 1rem;
     right: 1rem;
@@ -6325,11 +6409,52 @@ a:focus-visible {
     align-items: stretch;
   }
 
+  .connect-hero-copy {
+    padding: 1.05rem;
+  }
+
+  .connect-hero-copy h2 {
+    font-size: clamp(2rem, 9vw, 2.6rem);
+    line-height: 0.98;
+  }
+
+  .connect-hero-body {
+    margin-top: 0.9rem;
+  }
+
+  .connect-hero-body p {
+    margin-top: 0.7rem;
+    font-size: 0.96rem;
+    line-height: 1.54;
+  }
+
+  .connect-hero-actions {
+    margin-top: 1rem;
+  }
+
   .connect-hero-actions .primary-button,
   .connect-hero-actions .secondary-button,
   .connect-sponsor-actions .primary-button,
   .connect-sponsor-actions .secondary-button {
     width: 100%;
+  }
+
+  .connect-floating-register {
+    left: max(0.75rem, env(safe-area-inset-left));
+    right: max(0.75rem, env(safe-area-inset-right));
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    width: auto;
+    min-height: 3.55rem;
+    border-radius: 18px;
+    font-size: 1rem;
+  }
+
+  .connect-floating-register:hover {
+    transform: translateY(-2px);
+  }
+
+  .site-shell.is-connect-view {
+    padding-bottom: calc(6rem + env(safe-area-inset-bottom));
   }
 
   .connect-sponsor-card {
