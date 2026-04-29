@@ -377,6 +377,7 @@ function normalizeScheduleItem(
     dateTime: typeof item?.dateTime === "string" && item.dateTime.trim() ? item.dateTime.trim() : fallback.dateTime,
     venue: typeof item?.venue === "string" && item.venue.trim() ? item.venue.trim() : fallback.venue,
     address: typeof item?.address === "string" && item.address.trim() ? item.address.trim() : fallback.address,
+    mapHref: typeof item?.mapHref === "string" && item.mapHref.trim() ? item.mapHref.trim() : fallback.mapHref,
     highlights: normalizeStringArray(item?.highlights, fallback.highlights)
   };
 }

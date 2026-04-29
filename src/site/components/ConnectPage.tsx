@@ -28,13 +28,32 @@ const sponsorFormUrl = "/embed/donation-form/north-america-connect-sponsorship";
 const sponsorIframeUrl = "https://www.zeffy.com/embed/donation-form/north-america-connect-sponsorship";
 const sponsorThermometerUrl = "https://www.zeffy.com/embed/thermometer/north-america-connect-sponsorship";
 
+const attractionPreviewLinks: Record<string, string> = {
+  "Monuments & Memorials": "https://www.washington.org/visit-dc/monuments-memorials",
+  "Smithsonian Museums": "https://www.si.edu/visit",
+  "Old Town Alexandria": "https://visitalexandria.com/things-to-do/top-10-reasons-to-visit/",
+  "Georgetown": "https://www.georgetowndc.com/guide/25-things-to-do-in-georgetown/",
+  "Old Town Alexandria & Georgetown": "https://www.washington.org/visit-va/exploring-old-town-alexandria",
+  "National Harbor": "https://www.nationalharbor.com/things-to-do/",
+  "Michelin Star Restaurants": "https://guide.michelin.com/en/us/district-of-columbia/washington-dc/restaurants/1-star-michelin/2-stars-michelin",
+  "Loudoun Wineries": "https://www.visitloudoun.org/food-and-drink/wine-country/wineries-and-tasting-rooms/",
+  "LoCo Ale Trail": "https://www.visitloudoun.org/food-and-drink/loco-ale-trail/",
+  "Wineries & Craft Breweries": "https://www.visitloudoun.org/food-and-drink/",
+  "Historic Districts": "https://www.fxva.com/explore/history/",
+  "Trails & Nature Centers": "https://www.fairfaxcounty.gov/parks/lake-fairfax",
+  "DC Nightlife": "https://washington.org/visit-dc/entertainment-nightlife"
+};
+
 const sectionAnchors: Record<string, string> = {
   pricing: "connect-pricing",
   schedule: "connect-schedule",
   travel: "connect-travel",
   stay: "connect-stay",
   "josephite-merchandise": "connect-merchandise",
-  "local-attractions": "connect-attractions"
+  "local-attractions": "connect-attractions",
+  sponsor: "connect-sponsors",
+  sponsors: "connect-sponsors",
+  sponsorship: "connect-sponsors"
 };
 
 function slugify(value: string) {
@@ -66,6 +85,13 @@ function resolveHref(value: string) {
   }
 
   return `https://${trimmedValue}`;
+}
+
+function attractionPreviewUrl(attraction: string) {
+  const trimmedAttraction = attraction.trim();
+  const fallbackSearchQuery = encodeURIComponent(`${trimmedAttraction || "local attractions"} near Sterling VA`);
+
+  return attractionPreviewLinks[trimmedAttraction] ?? `https://www.google.com/search?q=${fallbackSearchQuery}`;
 }
 
 function promoCodeFromLabel(value: string) {
@@ -184,6 +210,8 @@ function ScheduleCard({
   editable: boolean;
   onChange: (value: ConnectScheduleItem) => void;
 }) {
+  const mapHref = resolveHref(item.mapHref ?? "");
+
   return (
     <article className="connect-schedule-card">
       <span className="connect-card-number">{String(index + 1).padStart(2, "0")}</span>
@@ -217,14 +245,32 @@ function ScheduleCard({
         </strong>
       </p>
       <p>
-        <InlineEditableText
-          editable={editable}
-          value={item.address}
-          onChange={(value) => onChange({ ...item, address: value })}
-          className="body-copy-edit"
-          ariaLabel={`Schedule item ${index + 1} address`}
-        />
+        {editable || !mapHref ? (
+          <InlineEditableText
+            editable={editable}
+            value={item.address}
+            onChange={(value) => onChange({ ...item, address: value })}
+            className="body-copy-edit"
+            ariaLabel={`Schedule item ${index + 1} address`}
+          />
+        ) : (
+          <a className="connect-map-link" href={mapHref} target="_blank" rel="noreferrer">
+            {item.address}
+          </a>
+        )}
       </p>
+      {editable ? (
+        <p>
+          <InlineEditableText
+            editable
+            value={item.mapHref ?? ""}
+            onChange={(value) => onChange({ ...item, mapHref: value })}
+            className="body-copy-edit"
+            placeholder="Google Maps URL"
+            ariaLabel={`Schedule item ${index + 1} Google Maps URL`}
+          />
+        </p>
+      ) : null}
       <div className="connect-chip-list" aria-label={`${item.title} highlights`}>
         {item.highlights.map((highlight, highlightIndex) => (
           <span key={`${highlight}-${highlightIndex}`}>
@@ -661,9 +707,9 @@ export function ConnectPage({
         </article>
       </section>
 
-      <section className="connect-section connect-extras" aria-label="Merchandise and local attractions">
+      <section className="connect-section connect-merchandise-section" aria-labelledby="connect-merchandise-title">
         <article id="connect-merchandise" className="connect-info-panel connect-merchandise-panel">
-          <h3>Josephite Merchandise</h3>
+          <h3 id="connect-merchandise-title">Josephite Merchandise</h3>
           <p>
             <InlineEditableText
               editable={editable}
@@ -683,26 +729,42 @@ export function ConnectPage({
             />
           </p>
         </article>
+      </section>
 
+      <section className="connect-section connect-attractions-section" aria-labelledby="connect-attractions-title">
         <article id="connect-attractions" className="connect-info-panel connect-attractions-panel">
-          <h3>Local Attractions</h3>
+          <h3 id="connect-attractions-title">Local Attractions</h3>
+          <p className="connect-attractions-note">Select a box below to view more information.</p>
           <div className="connect-attraction-grid">
-            {connectContent.attractions.map((attraction, index) => (
-              <span key={`${attraction}-${index}`}>
-                <InlineEditableText
-                  editable={editable}
-                  value={attraction}
-                  onChange={(value) => onChangeConnectContent?.("attractions", updateStringItem(connectContent.attractions, index, value))}
-                  className="body-copy-edit"
-                  ariaLabel={`Local attraction ${index + 1}`}
-                />
-              </span>
-            ))}
+            {connectContent.attractions.map((attraction, index) =>
+              editable ? (
+                <span key={`${attraction}-${index}`}>
+                  <InlineEditableText
+                    editable={editable}
+                    value={attraction}
+                    onChange={(value) => onChangeConnectContent?.("attractions", updateStringItem(connectContent.attractions, index, value))}
+                    className="body-copy-edit"
+                    ariaLabel={`Local attraction ${index + 1}`}
+                  />
+                </span>
+              ) : (
+                <a
+                  key={`${attraction}-${index}`}
+                  className="connect-attraction-link"
+                  href={attractionPreviewUrl(attraction)}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${attraction} preview`}
+                >
+                  {attraction}
+                </a>
+              )
+            )}
           </div>
         </article>
       </section>
 
-      <section className="connect-section connect-sponsor-section" aria-labelledby="connect-sponsors-title">
+      <section id="connect-sponsors" className="connect-section connect-sponsor-section" aria-labelledby="connect-sponsors-title">
         <div className="connect-sponsor-copy">
           <h3 id="connect-sponsors-title">
             <InlineEditableText
