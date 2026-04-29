@@ -68,6 +68,10 @@ function resolveHref(value: string) {
   return `https://${trimmedValue}`;
 }
 
+function promoCodeFromLabel(value: string) {
+  return value.match(/\b[A-Z0-9]{6,}\b/)?.[0] ?? value;
+}
+
 function ConnectZeffyDialog({
   type,
   connectContent,
@@ -322,20 +326,13 @@ export function ConnectPage({
 
   const activeTier = connectContent.sponsorTiers[activeSponsorTier] ?? connectContent.sponsorTiers[0];
   const unitedDiscountHref = resolveHref(connectContent.travel.discountHref);
+  const unitedPromoCode = promoCodeFromLabel(connectContent.travel.discountLabel);
   const hotelBlockHref = resolveHref(connectContent.stay.hotelBlockHref);
 
   return (
     <section id="connect-panel" className="subpage-shell" role="tabpanel" aria-label="North America Connect 2026">
       <div className="connect-hero">
         <div className="connect-hero-copy">
-          <p className="connect-kicker">
-            <InlineEditableText
-              editable={editable}
-              value={details.kicker}
-              onChange={(value) => onChangeDetails?.("kicker", value)}
-              className="section-title-edit"
-            />
-          </p>
           <h2>
             <InlineEditableText
               editable={editable}
@@ -355,13 +352,7 @@ export function ConnectPage({
             />
           </div>
           <div className="connect-hero-actions">
-            <button className="primary-button" type="button" onClick={() => setDialogType("registration")}>
-              Register Today
-            </button>
-            <button className="secondary-button" type="button" onClick={() => setDialogType("sponsor")}>
-              Become a Sponsor
-            </button>
-            <a className="inline-link connect-pdf-link" href="/docs/north-america-connect-2026-details.pdf" target="_blank" rel="noreferrer">
+            <a className="primary-button connect-pdf-button" href="/docs/north-america-connect-2026-details.pdf" target="_blank" rel="noreferrer">
               Download event details PDF
             </a>
           </div>
@@ -429,7 +420,6 @@ export function ConnectPage({
       <section id="connect-pricing" className="connect-section connect-pricing-section" aria-labelledby="connect-pricing-title">
         <div className="featured-heading">
           <div>
-            <p className="support-note">Tickets</p>
             <h3 id="connect-pricing-title">Pricing</h3>
           </div>
           <button className="primary-button" type="button" onClick={() => setDialogType("registration")}>
@@ -509,7 +499,6 @@ export function ConnectPage({
       <section id="connect-schedule" className="connect-section" aria-labelledby="connect-schedule-title">
         <div className="featured-heading">
           <div>
-            <p className="support-note">Weekend schedule</p>
             <h3 id="connect-schedule-title">
               <InlineEditableText
                 editable={editable}
@@ -547,12 +536,11 @@ export function ConnectPage({
 
       <section className="connect-section connect-logistics" aria-label="Travel and stay details">
         <article id="connect-travel" className="connect-info-panel connect-travel-panel">
-          <p className="support-note">Travel</p>
           <h3>Travel</h3>
-          <dl className="connect-detail-list">
-            <div>
-              <dt>Recommended Airport</dt>
-              <dd>
+          <div className="connect-travel-layout">
+            <div className="connect-airport-summary">
+              <span>Recommended airport</span>
+              <strong>
                 <InlineEditableText
                   editable={editable}
                   value={connectContent.travel.recommendedAirport}
@@ -560,17 +548,20 @@ export function ConnectPage({
                   className="body-copy-edit"
                   ariaLabel="Recommended airport"
                 />
-              </dd>
+              </strong>
+              <p>Best arrival point for the Washington, D.C. metro area events.</p>
             </div>
-            <div>
-              <dt>United Airlines Discount</dt>
-              <dd>
+
+            <div className="connect-travel-secondary">
+              <div className="connect-promo-card">
+                <span>United Airlines discount</span>
                 {unitedDiscountHref && !editable ? (
-                  <a className="inline-link" href={unitedDiscountHref} target="_blank" rel="noreferrer">
-                    {connectContent.travel.discountLabel}
+                  <a className="connect-promo-link" href={unitedDiscountHref} target="_blank" rel="noreferrer">
+                    <strong>{unitedPromoCode}</strong>
+                    <small>Applicable for travel to/from IAD between 9/18-9/21</small>
                   </a>
                 ) : (
-                  <>
+                  <div className="connect-promo-edit-stack">
                     <InlineEditableText
                       editable={editable}
                       value={connectContent.travel.discountLabel}
@@ -579,7 +570,7 @@ export function ConnectPage({
                       ariaLabel="United discount label"
                     />
                     {!editable ? <span className="connect-coming-soon">Link coming soon</span> : null}
-                  </>
+                  </div>
                 )}
                 {editable ? (
                   <InlineEditableText
@@ -591,11 +582,11 @@ export function ConnectPage({
                     ariaLabel="United discount URL"
                   />
                 ) : null}
-              </dd>
-            </div>
-            <div>
-              <dt>Other Airports</dt>
-              <dd className="connect-inline-list">
+              </div>
+
+              <div className="connect-airport-options">
+                <span>Other airports</span>
+                <div className="connect-inline-list">
                 {connectContent.travel.otherAirports.map((airport, airportIndex) => (
                   <span key={`${airport}-${airportIndex}`}>
                     <InlineEditableText
@@ -612,13 +603,13 @@ export function ConnectPage({
                     />
                   </span>
                 ))}
-              </dd>
+                </div>
+              </div>
             </div>
-          </dl>
+          </div>
         </article>
 
         <article id="connect-stay" className="connect-info-panel connect-stay-panel">
-          <p className="support-note">Stay</p>
           <h3>Stay</h3>
           <dl className="connect-detail-list">
             <div>
@@ -672,7 +663,6 @@ export function ConnectPage({
 
       <section className="connect-section connect-extras" aria-label="Merchandise and local attractions">
         <article id="connect-merchandise" className="connect-info-panel connect-merchandise-panel">
-          <p className="support-note">Josephite Merchandise</p>
           <h3>Josephite Merchandise</h3>
           <p>
             <InlineEditableText
@@ -695,7 +685,6 @@ export function ConnectPage({
         </article>
 
         <article id="connect-attractions" className="connect-info-panel connect-attractions-panel">
-          <p className="support-note">Local Attractions</p>
           <h3>Local Attractions</h3>
           <div className="connect-attraction-grid">
             {connectContent.attractions.map((attraction, index) => (
@@ -715,7 +704,6 @@ export function ConnectPage({
 
       <section className="connect-section connect-sponsor-section" aria-labelledby="connect-sponsors-title">
         <div className="connect-sponsor-copy">
-          <p className="support-note">Sponsorship</p>
           <h3 id="connect-sponsors-title">
             <InlineEditableText
               editable={editable}
@@ -772,7 +760,6 @@ export function ConnectPage({
               aria-labelledby={`connect-sponsor-tier-tab-${activeSponsorTier}`}
               tabIndex={0}
             >
-              <p className="support-note">Selected tier</p>
               <h4>
                 <InlineEditableText
                   editable={editable}

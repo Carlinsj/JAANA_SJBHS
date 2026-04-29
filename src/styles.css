@@ -889,8 +889,8 @@ img {
   margin-top: 1.25rem;
 }
 
-.connect-pdf-link {
-  margin-left: 0.15rem;
+.connect-pdf-button {
+  width: fit-content;
   font-weight: 800;
 }
 
@@ -1165,12 +1165,131 @@ img {
 }
 
 .connect-logistics {
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(18rem, 0.78fr) minmax(0, 1.22fr);
   align-items: start;
+  gap: 1.15rem;
 }
 
 .connect-logistics .connect-info-panel {
   min-height: 0;
+}
+
+.connect-travel-panel {
+  align-self: start;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.94));
+}
+
+.connect-travel-panel h3 {
+  font-size: clamp(1.65rem, 2.4vw, 2.15rem);
+}
+
+.connect-travel-layout {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.connect-airport-summary,
+.connect-promo-card,
+.connect-airport-options {
+  border: 1px solid rgba(19, 53, 127, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.connect-airport-summary {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem;
+  background:
+    linear-gradient(135deg, rgba(19, 53, 127, 0.08), rgba(255, 255, 255, 0.9));
+}
+
+.connect-airport-summary::after {
+  content: "";
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  width: 2.75rem;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(19, 53, 127, 0.22);
+}
+
+.connect-airport-summary > span,
+.connect-promo-card > span,
+.connect-airport-options > span {
+  display: block;
+  color: var(--navy-deep);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.connect-airport-summary strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--navy-deep);
+  font-family: Georgia, "Baskerville", "Times New Roman", serif;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 0.95;
+}
+
+.connect-airport-summary p {
+  max-width: 22rem;
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.connect-travel-secondary {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(8rem, 0.92fr);
+  gap: 0.75rem;
+}
+
+.connect-promo-card,
+.connect-airport-options {
+  padding: 0.9rem;
+}
+
+.connect-promo-link {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 0.55rem;
+  color: var(--navy-deep);
+  text-decoration: none;
+}
+
+.connect-promo-link strong {
+  width: fit-content;
+  padding-bottom: 0.12rem;
+  border-bottom: 2px solid rgba(19, 53, 127, 0.32);
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+.connect-promo-link small {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.connect-promo-link:hover strong {
+  border-bottom-color: var(--navy);
+}
+
+.connect-promo-edit-stack {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+}
+
+.connect-airport-options .connect-inline-list {
+  margin-top: 0.6rem;
 }
 
 .connect-travel-panel .connect-detail-list,
@@ -2656,6 +2775,10 @@ img {
   }
 
   .connect-detail-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-travel-secondary {
     grid-template-columns: 1fr;
   }
 

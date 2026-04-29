@@ -836,7 +836,7 @@ export const connectPlaceholders: SecondaryPage[] = [
   {
     title: "Pricing",
     body:
-      "Early Bird Pricing (through June 15th 2026): Adult (13+) Full Event $80; Adult (13+) Dinner Only $60; Adult (13+) Picnic Only $30. Regular Pricing (June 15th - Aug 31st 2026): Adult (13+) Full Event $100; Adult (13+) Dinner Only $70; Adult (13+) Picnic Only $40. Full Time University Students (SJBHS Alumni) and kids 12 and under are free with registration."
+      "Early Bird Pricing (through June 15th 2026): Full Event $80; Dinner Only $60; Picnic Only $30. Regular Pricing (June 15th - Aug 31st 2026): Full Event $100; Dinner Only $70; Picnic Only $40. Full Time University Students (SJBHS Alumni) and kids 12 and under are free with registration."
   },
   {
     title: "Schedule",
@@ -846,7 +846,7 @@ export const connectPlaceholders: SecondaryPage[] = [
   {
     title: "Travel and Stay",
     body:
-      "Recommended airport: IAD. Other airports: DCA and BWI. Hotel block details, hotel name, address, contact, and courtesy block date will be published as they are finalized."
+      "Recommended airport: IAD. United promo code ZSJE201804 is applicable for travel to/from IAD between 9/18-9/21. Other airports: DCA and BWI. Hotel block details, hotel name, address, contact, and courtesy block date will be published as they are finalized."
   },
   {
     title: "Merchandise and Attractions",
@@ -862,12 +862,12 @@ export const defaultConnectPageContent: ConnectPageContent = {
     {
       title: "Early Bird Pricing",
       period: "Through June 15th 2026",
-      options: ["Adult (13+) Full Event: $80", "Adult (13+) Dinner Only: $60", "Adult (13+) Picnic Only: $30"]
+      options: ["Full Event: $80", "Dinner Only: $60", "Picnic Only: $30"]
     },
     {
       title: "Regular Pricing",
       period: "June 15th - Aug 31st 2026",
-      options: ["Adult (13+) Full Event: $100", "Adult (13+) Dinner Only: $70", "Adult (13+) Picnic Only: $40"]
+      options: ["Full Event: $100", "Dinner Only: $70", "Picnic Only: $40"]
     }
   ],
   complimentaryTickets: [
@@ -876,8 +876,8 @@ export const defaultConnectPageContent: ConnectPageContent = {
   ],
   travel: {
     recommendedAirport: "IAD",
-    discountLabel: "Exclusive United Airlines Discount for Josephites",
-    discountHref: "",
+    discountLabel: "Promo Code: ZSJE201804 (valid for travel to/from IAD between 9/18-9/21)",
+    discountHref: "https://www.united.com/en/us/book-flight/united-reservations?txtPromoCode=ZSJE201804",
     otherAirports: ["DCA", "BWI"]
   },
   stay: {
