@@ -154,6 +154,7 @@ export type ConnectScheduleItem = {
   dateTime: string;
   venue: string;
   address: string;
+  mapHref?: string;
   highlights: string[];
 };
 

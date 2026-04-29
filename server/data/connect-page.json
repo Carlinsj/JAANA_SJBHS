@@ -6,7 +6,8 @@
     "Travel",
     "Stay",
     "Josephite Merchandise",
-    "Local Attractions"
+    "Local Attractions",
+    "Sponsor"
   ],
   "pricing": [
     {
@@ -56,6 +57,7 @@
       "dateTime": "Saturday, September 19th 2026, 6:30pm - 2am",
       "venue": "All Go Rhythms Bar & Restaurant",
       "address": "21035 Dulles Town Cir, Sterling, VA 20166",
+      "mapHref": "https://maps.app.goo.gl/GGzvULv1g1pSUoYg7?g_st=aw",
       "highlights": [
         "Dancefloor",
         "DJ",
@@ -70,6 +72,7 @@
       "dateTime": "Sunday, September 20th 2026, 11am - 4pm",
       "venue": "Lake Fairfax Park, Canopy G",
       "address": "Reston, VA 20190",
+      "mapHref": "https://maps.app.goo.gl/hMqWhjRLvm8n3Hhy7?g_st=aw",
       "highlights": [
         "Soccer",
         "Tug of War",
@@ -85,10 +88,12 @@
   "attractions": [
     "Monuments & Memorials",
     "Smithsonian Museums",
-    "Old Town Alexandria & Georgetown",
+    "Old Town Alexandria",
+    "Georgetown",
     "National Harbor",
     "Michelin Star Restaurants",
-    "Wineries & Craft Breweries",
+    "Loudoun Wineries",
+    "LoCo Ale Trail",
     "Historic Districts",
     "Trails & Nature Centers",
     "DC Nightlife"
@@ -136,8 +141,12 @@
       "body": "Recommended airport: IAD. United promo code ZSJE201804 is applicable for travel to/from IAD between 9/18-9/21. Other airports: DCA and BWI. Hotel block details, hotel name, address, contact, and courtesy block date will be published as they are finalized."
     },
     {
-      "title": "Merchandise and Attractions",
-      "body": "Josephite merchandise details will be available soon. Local attractions include monuments, Smithsonian museums, Old Town Alexandria, Georgetown, National Harbor, restaurants, wineries, historic districts, trails, nature centers, and DC nightlife."
+      "title": "Josephite Merchandise",
+      "body": "Josephite merchandise details will be available soon. Pre-orders open after Aug 1st, with event pickup during the reunion."
+    },
+    {
+      "title": "Local Attractions",
+      "body": "Local attraction previews link to official visitor guides and local planning sources for monuments, Smithsonian museums, Old Town Alexandria, Georgetown, National Harbor, restaurants, wineries, breweries, historic sites, trails, nature centers, and nightlife."
     }
   ]
 }

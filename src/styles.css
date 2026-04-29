@@ -942,7 +942,8 @@ img {
 
 .connect-detail-nav a,
 .connect-inline-list span,
-.connect-attraction-grid span,
+.connect-attraction-grid > span,
+.connect-attraction-grid a,
 .connect-free-grid p,
 .connect-coming-soon {
   display: inline-flex;
@@ -1104,6 +1105,18 @@ img {
   color: var(--muted);
   font-size: 0.96rem;
   line-height: 1.6;
+}
+
+.connect-map-link {
+  color: var(--navy);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.connect-map-link:hover,
+.connect-map-link:focus-visible {
+  color: var(--navy-deep);
 }
 
 .connect-chip-list,
@@ -1325,6 +1338,8 @@ img {
 }
 
 .connect-attraction-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
   margin-top: 1rem;
 }
 
@@ -1333,13 +1348,47 @@ img {
   margin-bottom: 2.2rem;
 }
 
+.connect-attractions-section {
+  margin-bottom: 2.2rem;
+}
+
 .connect-attractions-panel {
   scroll-margin-top: 10rem;
 }
 
-.connect-attraction-grid span {
+.connect-attractions-note {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.connect-attraction-grid > span,
+.connect-attraction-grid a {
+  width: 100%;
+  justify-content: flex-start;
+  min-height: 2.75rem;
+  border-radius: 10px;
   color: var(--muted);
   font-weight: 700;
+}
+
+.connect-attraction-grid a {
+  gap: 0.75rem;
+  text-decoration: none;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.connect-attraction-grid a:hover,
+.connect-attraction-grid a:focus-visible {
+  color: #ffffff;
+  background: var(--navy);
+  border-color: var(--navy);
+  transform: translateY(-1px);
 }
 
 .connect-sponsor-section {
