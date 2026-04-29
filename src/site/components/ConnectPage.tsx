@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   ConnectPageContent,
@@ -15,6 +15,7 @@ type ConnectPageProps = {
   connectContent: ConnectPageContent;
   connectCopy: ConnectPageCopy;
   editable?: boolean;
+  registrationOpenRequest?: number;
   onChangeDetails?: <K extends keyof TabConfig>(key: K, value: TabConfig[K]) => void;
   onChangeConnectCopy?: <K extends keyof ConnectPageCopy>(key: K, value: ConnectPageCopy[K]) => void;
   onChangeConnectContent?: <K extends keyof ConnectPageContent>(key: K, value: ConnectPageContent[K]) => void;
@@ -199,6 +200,20 @@ function ConnectZeffyDialog({
   );
 }
 
+function ConnectFloatingRegisterButton({ onClick }: { onClick: () => void }) {
+  return createPortal(
+    <button
+      className="primary-button connect-floating-register"
+      type="button"
+      onClick={onClick}
+      aria-label="Register today for North America Connect 2026"
+    >
+      Register Today
+    </button>,
+    document.body
+  );
+}
+
 function ScheduleCard({
   item,
   index,
@@ -359,16 +374,46 @@ export function ConnectPage({
   connectContent,
   connectCopy,
   editable = false,
+  registrationOpenRequest = 0,
   onChangeDetails,
   onChangeConnectCopy,
   onChangeConnectContent
 }: ConnectPageProps) {
   const [dialogType, setDialogType] = useState<ConnectDialogType | null>(null);
   const [activeSponsorTier, setActiveSponsorTier] = useState(0);
+  const [showFloatingRegister, setShowFloatingRegister] = useState(false);
+  const heroRegisterButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     setActiveSponsorTier((current) => Math.min(current, Math.max(connectContent.sponsorTiers.length - 1, 0)));
   }, [connectContent.sponsorTiers.length]);
+
+  useEffect(() => {
+    if (!editable && registrationOpenRequest > 0) {
+      setDialogType("registration");
+    }
+  }, [editable, registrationOpenRequest]);
+
+  useEffect(() => {
+    if (editable) {
+      setShowFloatingRegister(false);
+      return;
+    }
+
+    const updateFloatingRegister = () => {
+      const heroButtonRect = heroRegisterButtonRef.current?.getBoundingClientRect();
+      setShowFloatingRegister(heroButtonRect ? heroButtonRect.bottom < 0 : true);
+    };
+
+    updateFloatingRegister();
+    window.addEventListener("scroll", updateFloatingRegister, { passive: true });
+    window.addEventListener("resize", updateFloatingRegister);
+
+    return () => {
+      window.removeEventListener("scroll", updateFloatingRegister);
+      window.removeEventListener("resize", updateFloatingRegister);
+    };
+  }, [editable]);
 
   const activeTier = connectContent.sponsorTiers[activeSponsorTier] ?? connectContent.sponsorTiers[0];
   const unitedDiscountHref = resolveHref(connectContent.travel.discountHref);
@@ -398,9 +443,14 @@ export function ConnectPage({
             />
           </div>
           <div className="connect-hero-actions">
-            <a className="primary-button connect-pdf-button" href="/docs/north-america-connect-2026-details.pdf" target="_blank" rel="noreferrer">
-              Download event details PDF
-            </a>
+            <button
+              ref={heroRegisterButtonRef}
+              className="primary-button connect-register-button"
+              type="button"
+              onClick={() => setDialogType("registration")}
+            >
+              Register Today
+            </button>
           </div>
         </div>
 
@@ -468,9 +518,6 @@ export function ConnectPage({
           <div>
             <h3 id="connect-pricing-title">Pricing</h3>
           </div>
-          <button className="primary-button" type="button" onClick={() => setDialogType("registration")}>
-            Register Today
-          </button>
         </div>
         <div className="connect-pricing-grid">
           {connectContent.pricing.map((pricingGroup, groupIndex) => (
@@ -868,6 +915,8 @@ export function ConnectPage({
           </div>
         </div>
       </section>
+
+      {!editable && showFloatingRegister ? <ConnectFloatingRegisterButton onClick={() => setDialogType("registration")} /> : null}
 
       <ConnectZeffyDialog type={dialogType} connectContent={connectContent} onClose={() => setDialogType(null)} />
     </section>

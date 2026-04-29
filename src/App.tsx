@@ -24,9 +24,11 @@ import { defaultSiteContent, normalizeSiteContent } from "./site/siteContent";
 import { handleRovingTabKeyDown } from "./site/accessibility";
 
 const siteContentUpdatedStorageKey = "jaana-site-content-updated-at";
+const connectRegistrationHashes = new Set(["register", "connect-register"]);
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabId>("home");
+  const [connectRegistrationRequest, setConnectRegistrationRequest] = useState(0);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [backendOnline, setBackendOnline] = useState(false);
   const [selectedCause, setSelectedCause] = useState<CauseCard | null>(null);
@@ -87,6 +89,19 @@ function App() {
       }
 
       const hashTab = window.location.hash.replace("#", "");
+
+      if (connectRegistrationHashes.has(hashTab)) {
+        startTransition(() => {
+          setActiveTab("connect");
+          setConnectRegistrationRequest((current) => current + 1);
+        });
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+        return;
+      }
+
       const nextTab =
         hashTab === "overview"
           ? "home"
@@ -806,7 +821,12 @@ function App() {
         ) : null}
 
         {activeTab === "connect" ? (
-          <ConnectPage details={activeTabDetails} connectContent={connectPage} connectCopy={connectCopy} />
+          <ConnectPage
+            details={activeTabDetails}
+            connectContent={connectPage}
+            connectCopy={connectCopy}
+            registrationOpenRequest={connectRegistrationRequest}
+          />
         ) : null}
       </main>
 
