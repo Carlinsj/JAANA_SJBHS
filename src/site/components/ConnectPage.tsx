@@ -454,41 +454,12 @@ export function ConnectPage({
           </div>
         </div>
 
-        <aside className="connect-event-panel">
-          <div className="connect-event-photo">
-            <img src="/assets/connect-group-steps.jpg" alt="Josephite alumni and families gathered on steps at a Connect event" />
-          </div>
-          <div className="connect-date-panel">
-            <img src="/assets/oba-connect-mark.png" alt="SJBHS OBA Connect mark" />
-            <strong>
-              <InlineEditableText
-                editable={editable}
-                value={connectCopy.posterLabel}
-                onChange={(value) => onChangeConnectCopy?.("posterLabel", value)}
-                className="section-title-edit"
-              />
-            </strong>
-            <p>
-              <InlineEditableText
-                editable={editable}
-                value={connectCopy.posterTitle}
-                onChange={(value) => onChangeConnectCopy?.("posterTitle", value)}
-                className="section-title-edit"
-              />
-            </p>
-            <div className="connect-date-meta">
-              {editable ? (
-                <InlineEditableText
-                  editable
-                  value={connectCopy.posterBody}
-                  onChange={(value) => onChangeConnectCopy?.("posterBody", value)}
-                  className="body-copy-edit"
-                />
-              ) : (
-                connectCopy.posterBody.split("|").map((item) => <span key={item.trim()}>{item.trim()}</span>)
-              )}
-            </div>
-          </div>
+        <aside className="connect-event-panel connect-poster-panel">
+          <img
+            className="connect-poster-image"
+            src="/assets/connect-poster-placeholder.svg"
+            alt="North America Connect 2026 poster placeholder"
+          />
         </aside>
       </div>
 

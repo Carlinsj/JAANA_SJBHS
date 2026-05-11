@@ -888,19 +888,19 @@
   ],
   "houseShields": [
     {
-      "src": "/assets/house-andrew.svg",
+      "src": "/assets/house-pins/house-andrew-pin.png",
       "alt": "St. Andrew house shield"
     },
     {
-      "src": "/assets/house-george.svg",
-      "alt": "St. George house shield"
-    },
-    {
-      "src": "/assets/house-david.svg",
+      "src": "/assets/house-pins/house-david-pin.png",
       "alt": "St. David house shield"
     },
     {
-      "src": "/assets/house-patrick.svg",
+      "src": "/assets/house-pins/house-george-pin.png",
+      "alt": "St. George house shield"
+    },
+    {
+      "src": "/assets/house-pins/house-patrick-pin.png",
       "alt": "St. Patrick house shield"
     }
   ],
