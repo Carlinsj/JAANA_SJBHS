@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1350" role="img" aria-labelledby="title desc">
+  <title id="title">Poster yet to come</title>
+  <desc id="desc">Placeholder poster artwork for North America Connect 2026.</desc>
+  <defs>
+    <linearGradient id="poster-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbf8ef" />
+      <stop offset="0.52" stop-color="#eef3fb" />
+      <stop offset="1" stop-color="#dfe8f4" />
+    </linearGradient>
+    <linearGradient id="poster-band" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10275e" />
+      <stop offset="1" stop-color="#244ea8" />
+    </linearGradient>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#0d1f4a" flood-opacity="0.16" />
+    </filter>
+  </defs>
+  <rect width="900" height="1350" rx="46" fill="url(#poster-bg)" />
+  <rect x="58" y="58" width="784" height="1234" rx="38" fill="#ffffff" opacity="0.58" stroke="#ffffff" stroke-width="8" />
+  <rect x="98" y="112" width="704" height="1126" rx="36" fill="#ffffff" opacity="0.76" stroke="#d8e1ee" stroke-width="5" stroke-dasharray="22 18" />
+  <g filter="url(#soft-shadow)">
+    <rect x="146" y="552" width="608" height="246" rx="38" fill="url(#poster-band)" />
+    <text x="450" y="655" fill="#ffffff" text-anchor="middle" font-family="Georgia, Times New Roman, serif" font-size="68" font-weight="700">Poster</text>
+    <text x="450" y="735" fill="#ffffff" text-anchor="middle" font-family="Georgia, Times New Roman, serif" font-size="68" font-weight="700">yet to come</text>
+  </g>
+</svg>
