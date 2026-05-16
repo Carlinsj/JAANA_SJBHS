@@ -43,12 +43,14 @@
     ]
   },
   "stay": {
-    "hotelBlockLabel": "Exclusive hotel-block link",
-    "hotelBlockHref": "",
-    "hotelName": "Hotel details coming soon",
-    "address": "Address coming soon",
-    "contact": "Contact coming soon",
-    "courtesyBlock": "Courtesy hotel block available on a first come basis through a date to be announced.",
+    "hotelBlockLabel": "Group Code: G-SJ18",
+    "hotelBlockHref": "https://www.hyatt.com/events/en-US/group-booking/DULLE/G-SJ18",
+    "hotelName": "Hyatt Regency Dulles",
+    "address": "2300 Dulles Corner Blvd., Herndon, VA 20171",
+    "hotelImageSrc": "/assets/hyatt-regency-dulles-exterior.jpg",
+    "hotelImageAlt": "Exterior of Hyatt Regency Dulles",
+    "contact": "Book through the Hyatt group link.",
+    "courtesyBlock": "Hotel room block available on a first come basis through Aug 21 2026.",
     "shuttle": "Complimentary shuttle to and from IAD."
   },
   "schedule": [
@@ -138,7 +140,7 @@
     },
     {
       "title": "Travel and Stay",
-      "body": "Recommended airport: IAD. United promo code ZSJE201804 is applicable for travel to/from IAD between 9/18-9/21. Other airports: DCA and BWI. Hotel block details, hotel name, address, contact, and courtesy block date will be published as they are finalized."
+      "body": "Recommended airport: IAD. United promo code ZSJE201804 is applicable for travel to/from IAD between 9/18-9/21. The hotel room block is at Hyatt Regency Dulles with group code G-SJ18 and is available on a first come basis through Aug 21 2026."
     },
     {
       "title": "Josephite Merchandise",

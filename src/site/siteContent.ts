@@ -359,6 +359,10 @@ function normalizeStayContent(stay: Partial<ConnectStayContent> | undefined, fal
     hotelBlockHref: typeof stay?.hotelBlockHref === "string" ? stay.hotelBlockHref.trim() : fallback.hotelBlockHref,
     hotelName: typeof stay?.hotelName === "string" && stay.hotelName.trim() ? stay.hotelName.trim() : fallback.hotelName,
     address: typeof stay?.address === "string" && stay.address.trim() ? stay.address.trim() : fallback.address,
+    hotelImageSrc:
+      typeof stay?.hotelImageSrc === "string" && stay.hotelImageSrc.trim() ? stay.hotelImageSrc.trim() : fallback.hotelImageSrc,
+    hotelImageAlt:
+      typeof stay?.hotelImageAlt === "string" && stay.hotelImageAlt.trim() ? stay.hotelImageAlt.trim() : fallback.hotelImageAlt,
     contact: typeof stay?.contact === "string" && stay.contact.trim() ? stay.contact.trim() : fallback.contact,
     courtesyBlock:
       typeof stay?.courtesyBlock === "string" && stay.courtesyBlock.trim()

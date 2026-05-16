@@ -930,18 +930,148 @@ img {
   min-height: 0;
 }
 
-.connect-poster-image {
+.connect-poster-preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: calc(var(--radius-xl) - 12px);
+  background: #f8f4ea;
+  cursor: zoom-in;
+}
+
+.connect-poster-preview img {
+  position: absolute;
+  inset: 0;
   display: block;
-  flex: 0 1 auto;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.connect-poster-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: grid;
+  place-items: center;
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  background: rgba(12, 20, 37, 0.94);
+  backdrop-filter: blur(14px);
+}
+
+.connect-poster-dialog-shell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100%, calc((100dvh - 5rem) * 0.772));
+  height: calc(100dvh - 2rem);
+  max-height: 100%;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 34px 90px rgba(0, 0, 0, 0.36);
+}
+
+.connect-poster-dialog-artboard {
+  position: relative;
   width: auto;
   max-width: 100%;
-  max-height: 100%;
+  height: calc(100dvh - 5rem);
+  max-height: calc(100dvh - 5rem);
+  aspect-ratio: 612 / 792;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.28);
+}
+
+.connect-poster-dialog-artboard img {
+  display: block;
+  width: 100%;
   height: 100%;
-  min-height: 0;
-  aspect-ratio: 2 / 3;
-  border-radius: calc(var(--radius-xl) - 12px);
-  object-fit: contain;
-  background: #f8f4ea;
+}
+
+.connect-poster-hotspot {
+  position: absolute;
+  display: block;
+  border-radius: 8px;
+}
+
+.connect-poster-hotspot:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+  background: rgba(36, 78, 168, 0.22);
+}
+
+.connect-poster-hotspot.is-dinner-map {
+  left: 22%;
+  top: 6%;
+  width: 25%;
+  height: 9%;
+}
+
+.connect-poster-hotspot.is-picnic-map {
+  left: 65%;
+  top: 6%;
+  width: 25%;
+  height: 9%;
+}
+
+.connect-poster-hotspot.is-united-code {
+  left: 19%;
+  top: 67%;
+  width: 21%;
+  height: 5.5%;
+}
+
+.connect-poster-hotspot.is-hotel-booking {
+  left: 64%;
+  top: 64%;
+  width: 18%;
+  height: 7%;
+}
+
+.connect-poster-hotspot.is-register-button {
+  left: 29%;
+  top: 80.5%;
+  width: 45%;
+  height: 5.5%;
+}
+
+.connect-poster-hotspot.is-register-footer {
+  left: 17%;
+  top: 92%;
+  width: 26%;
+  height: 3.5%;
+}
+
+.connect-poster-hotspot.is-connect-footer {
+  left: 17%;
+  top: 95%;
+  width: 26%;
+  height: 3.5%;
+}
+
+.connect-poster-dialog-pdf-link {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  color: #ffffff;
+  background: rgba(19, 53, 127, 0.86);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.connect-poster-dialog-close {
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
 }
 
 .connect-event-photo {
@@ -1345,6 +1475,42 @@ img {
   margin-top: 0.6rem;
 }
 
+.connect-hotel-preview {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.55fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(19, 53, 127, 0.12);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(19, 53, 127, 0.07), rgba(255, 255, 255, 0.9));
+}
+
+.connect-hotel-preview img {
+  width: 100%;
+  height: 100%;
+  min-height: 10rem;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.connect-hotel-preview strong {
+  display: block;
+  color: var(--navy-deep);
+  font-family: Georgia, "Baskerville", "Times New Roman", serif;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  line-height: 1.12;
+}
+
+.connect-hotel-preview p {
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
 .connect-travel-panel .connect-detail-list,
 .connect-stay-panel .connect-detail-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1364,9 +1530,7 @@ img {
   line-height: 0.95;
 }
 
-.connect-stay-panel .connect-detail-list div:first-child,
-.connect-stay-panel .connect-detail-list div:nth-child(5),
-.connect-stay-panel .connect-detail-list div:nth-child(6) {
+.connect-stay-panel .connect-detail-list div:first-child {
   grid-column: 1 / -1;
 }
 
@@ -2881,6 +3045,14 @@ img {
 
   .connect-travel-secondary {
     grid-template-columns: 1fr;
+  }
+
+  .connect-hotel-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-hotel-preview img {
+    max-height: 16rem;
   }
 
   .connect-travel-panel .connect-detail-list,
@@ -4458,9 +4630,12 @@ img {
   align-items: center;
   justify-items: center;
   overflow-y: auto;
-  padding: clamp(1rem, 2.5vw, 2rem);
-  background: rgba(12, 20, 37, 0.78);
-  backdrop-filter: blur(12px);
+  overflow-x: hidden;
+  padding: clamp(1.2rem, 3vw, 2.5rem);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(233, 214, 163, 0.06), transparent 34%),
+    rgba(24, 31, 46, 0.68);
+  backdrop-filter: blur(16px);
 }
 
 .album-dialog {
@@ -4478,15 +4653,26 @@ img {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: min(1060px, calc(100vw - 2rem));
+  width: min(920px, calc(100vw - 2rem));
   max-height: calc(100dvh - 2rem);
   overflow: hidden;
-  border-radius: 32px;
-  border: 1px solid rgba(19, 53, 127, 0.12);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.74);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0) 34%),
-    linear-gradient(180deg, #fffdf8 0%, #f7f1e6 100%);
-  box-shadow: 0 34px 90px rgba(7, 15, 33, 0.34);
+    linear-gradient(180deg, rgba(255, 254, 251, 0.99), rgba(248, 244, 237, 0.98)),
+    #fffdfa;
+  box-shadow:
+    0 30px 72px rgba(14, 21, 37, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.cause-dialog-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 0.26rem;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(33, 58, 117, 0.9), rgba(199, 171, 106, 0.78), rgba(33, 58, 117, 0.9));
 }
 
 .album-dialog-shell {
@@ -4517,8 +4703,8 @@ img {
 
 .cause-dialog-header {
   position: relative;
-  padding: clamp(1.45rem, 2.7vw, 2.15rem) clamp(4.5rem, 6.5vw, 5.2rem) clamp(1rem, 2vw, 1.4rem) clamp(1.45rem, 2.7vw, 2.15rem);
-  border-bottom: 1px solid rgba(19, 53, 127, 0.1);
+  padding: clamp(1.75rem, 3vw, 2.35rem) clamp(4.35rem, 6vw, 5rem) clamp(1.15rem, 2vw, 1.45rem) clamp(1.75rem, 3vw, 2.35rem);
+  border-bottom: 1px solid rgba(19, 53, 127, 0.09);
 }
 
 .album-dialog-header {
@@ -4539,19 +4725,19 @@ img {
 
 .cause-dialog-summary-metrics dt {
   display: block;
-  color: rgba(19, 53, 127, 0.56);
-  font-size: 0.72rem;
+  color: rgba(210, 186, 129, 0.92);
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
 .cause-dialog-header h3 {
   margin-top: 0;
-  max-width: 19ch;
-  font-size: clamp(1.7rem, 2.75vw, 2.35rem);
+  max-width: 21ch;
+  font-size: clamp(1.95rem, 3.1vw, 2.8rem);
   line-height: 1.04;
-  letter-spacing: -0.028em;
+  letter-spacing: -0.018em;
   font-weight: 700;
 }
 
@@ -4574,11 +4760,11 @@ img {
 }
 
 .cause-dialog-header p {
-  margin: 0.7rem 0 0;
-  max-width: 58rem;
-  font-size: clamp(0.92rem, 1.08vw, 1rem);
-  line-height: 1.55;
-  color: rgba(19, 53, 127, 0.7);
+  margin: 0.72rem 0 0;
+  max-width: 46rem;
+  font-size: clamp(0.96rem, 1.08vw, 1.03rem);
+  line-height: 1.62;
+  color: rgba(19, 53, 127, 0.66);
 }
 
 .album-dialog-header p {
@@ -4595,15 +4781,15 @@ img {
 .cause-dialog-grid {
   display: grid;
   flex: 1 1 auto;
-  grid-template-columns: minmax(18rem, 0.88fr) minmax(0, 1.12fr);
+  grid-template-columns: minmax(13.5rem, 0.48fr) minmax(0, 1fr);
   align-items: start;
-  gap: clamp(1rem, 2vw, 1.5rem);
+  gap: clamp(1.2rem, 2.4vw, 2rem);
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
-  padding: clamp(1rem, 2vw, 1.3rem) clamp(1.45rem, 2.7vw, 2.15rem);
+  padding: clamp(1.35rem, 2.5vw, 1.85rem) clamp(1.75rem, 3vw, 2.35rem) clamp(1.45rem, 2.6vw, 2rem);
 }
 
 .cause-dialog-panel {
@@ -4617,41 +4803,49 @@ img {
 }
 
 .cause-dialog-summary-panel {
-  gap: 1rem;
+  gap: 0.85rem;
   align-self: start;
-  padding: clamp(1rem, 1.9vw, 1.3rem);
-  border-radius: 20px;
-  border: 1px solid rgba(19, 53, 127, 0.12);
+  padding: clamp(1.05rem, 1.9vw, 1.35rem);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 251, 245, 0.68)),
-    #f8f1e5;
-  box-shadow: 0 18px 42px rgba(15, 34, 78, 0.08);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 42%),
+    linear-gradient(180deg, #314d8b, #1d3467);
+  box-shadow: 0 14px 28px rgba(24, 42, 88, 0.14);
 }
 
 .cause-dialog-summary-metrics {
   display: grid;
-  gap: 0.75rem;
+  gap: 0.55rem;
   margin: 0;
 }
 
 .cause-dialog-summary-metrics div {
-  padding-top: 0.75rem;
-  border-top: 1px solid rgba(19, 53, 127, 0.12);
+  padding-top: 0;
+  border-top: 0;
 }
 
 .cause-dialog-summary-metrics dd {
   margin: 0;
-  margin-top: 0.25rem;
-  color: var(--navy-deep);
-  font-size: clamp(0.96rem, 1.25vw, 1.06rem);
+  margin-top: 0.35rem;
+  color: rgba(255, 253, 248, 0.98);
+  font-size: clamp(1rem, 1.2vw, 1.08rem);
   font-weight: 800;
-  line-height: 1.35;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.cause-dialog-summary-metrics .is-currency {
+  font-size: clamp(1.18rem, 1.75vw, 1.48rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
 }
 
 .cause-dialog-content-panel {
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2vw, 1.4rem);
+  gap: clamp(1.05rem, 2vw, 1.45rem);
 }
 
 .cause-dialog-summary-metrics .cause-dialog-minimum {
@@ -4663,52 +4857,52 @@ img {
 }
 
 .cause-dialog-section + .cause-dialog-section {
-  padding-top: clamp(0.9rem, 1.8vw, 1.2rem);
-  border-top: 1px solid rgba(19, 53, 127, 0.1);
+  padding-top: clamp(1.05rem, 1.9vw, 1.35rem);
+  border-top: 1px solid rgba(19, 53, 127, 0.12);
 }
 
 .cause-dialog-panel h4 {
-  margin: 0 0 0.45rem;
-  font-size: clamp(1.05rem, 1.85vw, 1.45rem);
+  margin: 0 0 0.38rem;
+  font-size: clamp(1.05rem, 1.65vw, 1.32rem);
   font-weight: 700;
-  color: var(--navy-deep);
+  color: #1c3569;
   line-height: 1.15;
-  letter-spacing: -0.015em;
+  letter-spacing: 0;
 }
 
 .cause-dialog-panel p {
   margin: 0;
-  max-width: 34rem;
-  font-size: clamp(0.92rem, 1.08vw, 0.98rem);
-  line-height: 1.52;
-  color: rgba(19, 53, 127, 0.68);
+  max-width: 38rem;
+  font-size: clamp(0.95rem, 1.08vw, 1.02rem);
+  line-height: 1.62;
+  color: rgba(54, 77, 128, 0.82);
 }
 
 .cause-dialog-panel .detail-list {
   display: grid;
-  gap: 0.58rem;
-  margin: 0.72rem 0 0;
+  gap: 0.7rem;
+  margin: 0.78rem 0 0;
   padding: 0;
   list-style: none;
 }
 
 .cause-dialog-panel .detail-list li {
   position: relative;
-  padding-left: 1.05rem;
-  color: rgba(19, 53, 127, 0.68);
-  font-size: clamp(0.92rem, 1.08vw, 0.98rem);
-  line-height: 1.48;
+  padding-left: 1.15rem;
+  color: rgba(54, 77, 128, 0.82);
+  font-size: clamp(0.95rem, 1.08vw, 1.02rem);
+  line-height: 1.58;
 }
 
 .cause-dialog-panel .detail-list li::before {
   content: "";
   position: absolute;
-  top: 0.72em;
+  top: 0.76em;
   left: 0;
-  width: 0.36rem;
-  height: 0.36rem;
+  width: 0.32rem;
+  height: 0.32rem;
   border-radius: 999px;
-  background: var(--gold);
+  background: #caa24e;
 }
 
 .cause-dialog-actions {
@@ -4716,16 +4910,17 @@ img {
   justify-content: center;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.78rem clamp(1.45rem, 2.7vw, 2.15rem);
+  padding: 1rem clamp(1.75rem, 3vw, 2.35rem) 1.2rem;
   border-top: 1px solid rgba(19, 53, 127, 0.1);
-  background: rgba(255, 251, 245, 0.78);
+  background: rgba(255, 252, 247, 0.82);
 }
 
 .cause-dialog-actions .primary-button {
   min-width: 11rem;
   min-height: 2.75rem;
   font-size: 0.95rem;
-  box-shadow: 0 16px 32px rgba(19, 53, 127, 0.2);
+  background: linear-gradient(180deg, #496eb7, #355ca6);
+  box-shadow: 0 12px 24px rgba(53, 92, 166, 0.18);
 }
 
 .cause-secondary-action {
@@ -6509,9 +6704,9 @@ a:focus-visible {
       linear-gradient(180deg, rgba(255, 253, 248, 0.96), rgba(229, 237, 248, 0.96));
   }
 
-  .connect-poster-image {
+  .connect-poster-preview {
     width: 100%;
-    height: auto;
+    height: 100%;
     border-radius: 18px;
   }
 

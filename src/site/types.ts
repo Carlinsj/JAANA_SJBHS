@@ -144,6 +144,8 @@ export type ConnectStayContent = {
   hotelBlockHref: string;
   hotelName: string;
   address: string;
+  hotelImageSrc: string;
+  hotelImageAlt: string;
   contact: string;
   courtesyBlock: string;
   shuttle: string;
