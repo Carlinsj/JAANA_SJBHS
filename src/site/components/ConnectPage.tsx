@@ -30,43 +30,6 @@ const sponsorIframeUrl = "https://www.zeffy.com/embed/donation-form/north-americ
 const sponsorThermometerUrl = "https://www.zeffy.com/embed/thermometer/north-america-connect-sponsorship";
 const connectPosterPdfUrl = "/docs/north-america-connect-2026-poster.pdf";
 const connectPosterImageUrl = "/assets/north-america-connect-2026-poster.png";
-const posterHotspots = [
-  {
-    className: "is-dinner-map",
-    href: "https://maps.app.goo.gl/GGzvULv1g1pSUoYg7?g_st=aw",
-    label: "Open Saturday dinner location"
-  },
-  {
-    className: "is-picnic-map",
-    href: "https://maps.app.goo.gl/hMqWhjRLvm8n3Hhy7?g_st=aw",
-    label: "Open Sunday picnic location"
-  },
-  {
-    className: "is-united-code",
-    href: "https://www.united.com/en/us/book-flight/united-reservations?txtPromoCode=ZSJE201804",
-    label: "Open United Airlines discount"
-  },
-  {
-    className: "is-hotel-booking",
-    href: "https://www.hyatt.com/events/en-US/group-booking/DULLE/G-SJ18",
-    label: "Open Hyatt hotel block booking"
-  },
-  {
-    className: "is-register-button",
-    href: "/#register",
-    label: "Register for North America Connect 2026"
-  },
-  {
-    className: "is-register-footer",
-    href: "/#register",
-    label: "Open registration page"
-  },
-  {
-    className: "is-connect-footer",
-    href: "/#connect",
-    label: "Open Connect details page"
-  }
-];
 
 const attractionPreviewLinks: Record<string, string> = {
   "Monuments & Memorials": "https://www.washington.org/visit-dc/monuments-memorials",
@@ -272,22 +235,11 @@ function ConnectPosterDialog({ onClose }: { onClose: () => void }) {
         <button className="zeffy-dialog-close connect-poster-dialog-close" type="button" onClick={onClose} aria-label="Close poster">
           ×
         </button>
-        <div className="connect-poster-dialog-artboard">
-          <img src={connectPosterImageUrl} alt="North America Connect 2026 poster with clickable event links" />
-          {posterHotspots.map((hotspot) => (
-            <a
-              key={hotspot.className}
-              className={`connect-poster-hotspot ${hotspot.className}`}
-              href={hotspot.href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={hotspot.label}
-            />
-          ))}
-        </div>
-        <a className="connect-poster-dialog-pdf-link" href={connectPosterPdfUrl} target="_blank" rel="noreferrer">
-          Open original PDF
-        </a>
+        <iframe
+          className="connect-poster-dialog-frame"
+          title="North America Connect 2026 poster with clickable event links"
+          src={`${connectPosterPdfUrl}#toolbar=0&navpanes=0&scrollbar=0&view=Fit`}
+        />
       </div>
     </div>,
     document.body

@@ -966,112 +966,42 @@ img {
 
 .connect-poster-dialog-shell {
   position: relative;
-  display: grid;
-  place-items: center;
-  width: min(100%, calc((100dvh - 5rem) * 0.772));
+  width: min(100%, calc(100dvh * 0.78));
   height: calc(100dvh - 2rem);
   max-height: 100%;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.06);
+  background: #ffffff;
   box-shadow: 0 34px 90px rgba(0, 0, 0, 0.36);
 }
 
-.connect-poster-dialog-artboard {
-  position: relative;
-  width: auto;
-  max-width: 100%;
-  height: calc(100dvh - 5rem);
-  max-height: calc(100dvh - 5rem);
-  aspect-ratio: 612 / 792;
-  overflow: hidden;
-  border-radius: 16px;
-  background: #ffffff;
-  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.28);
-}
-
-.connect-poster-dialog-artboard img {
+.connect-poster-dialog-frame {
   display: block;
   width: 100%;
   height: 100%;
+  border: 0;
+  border-radius: inherit;
+  background: #ffffff;
 }
 
-.connect-poster-hotspot {
-  position: absolute;
-  display: block;
-  border-radius: 8px;
-}
-
-.connect-poster-hotspot:focus-visible {
-  outline: 3px solid #ffffff;
-  outline-offset: 2px;
-  background: rgba(36, 78, 168, 0.22);
-}
-
-.connect-poster-hotspot.is-dinner-map {
-  left: 22%;
-  top: 6%;
-  width: 25%;
-  height: 9%;
-}
-
-.connect-poster-hotspot.is-picnic-map {
-  left: 65%;
-  top: 6%;
-  width: 25%;
-  height: 9%;
-}
-
-.connect-poster-hotspot.is-united-code {
-  left: 19%;
-  top: 67%;
-  width: 21%;
-  height: 5.5%;
-}
-
-.connect-poster-hotspot.is-hotel-booking {
-  left: 64%;
-  top: 64%;
-  width: 18%;
-  height: 7%;
-}
-
-.connect-poster-hotspot.is-register-button {
-  left: 29%;
-  top: 80.5%;
-  width: 45%;
-  height: 5.5%;
-}
-
-.connect-poster-hotspot.is-register-footer {
-  left: 17%;
-  top: 92%;
-  width: 26%;
-  height: 3.5%;
-}
-
-.connect-poster-hotspot.is-connect-footer {
-  left: 17%;
-  top: 95%;
-  width: 26%;
-  height: 3.5%;
-}
-
-.connect-poster-dialog-pdf-link {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  padding: 0.55rem 0.8rem;
-  border-radius: 999px;
-  color: #ffffff;
-  background: rgba(19, 53, 127, 0.86);
-  font-size: 0.82rem;
-  font-weight: 800;
-}
-
-.connect-poster-dialog-close {
-  top: 0.75rem;
-  right: 0.75rem;
+.connect-poster-dialog .connect-poster-dialog-close {
+  top: -0.9rem;
+  right: -3.9rem;
   z-index: 2;
+  width: 3.15rem;
+  height: 3.15rem;
+  border: 1px solid rgba(19, 53, 127, 0.12);
+  color: var(--navy-deep);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 10px 24px rgba(12, 20, 37, 0.18),
+    0 2px 8px rgba(12, 20, 37, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.connect-poster-dialog .connect-poster-dialog-close:hover {
+  color: #ffffff;
+  background: var(--navy);
+  transform: translateY(-1px);
 }
 
 .connect-event-photo {
@@ -1127,6 +1057,8 @@ img {
   background: rgba(255, 255, 255, 0.72);
   font-size: 0.9rem;
   font-weight: 700;
+  text-align: center;
+  white-space: normal;
 }
 
 .connect-detail-nav a:hover {
@@ -3058,6 +2990,210 @@ img {
   .connect-travel-panel .connect-detail-list,
   .connect-stay-panel .connect-detail-list {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1180px) {
+  .connect-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.72fr);
+  }
+
+  .connect-hero-copy h2 {
+    font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+  }
+
+  .connect-logistics {
+    grid-template-columns: minmax(16rem, 0.85fr) minmax(0, 1.15fr);
+  }
+
+  .connect-travel-secondary {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 980px) {
+  .connect-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-hero-copy,
+  .connect-event-panel,
+  .connect-poster-panel {
+    min-height: 0;
+  }
+
+  .connect-poster-panel {
+    height: min(36rem, calc(100vw - 2.5rem));
+  }
+
+  .connect-poster-preview {
+    max-width: min(100%, calc((100vw - 2.5rem) * 0.77));
+    margin-inline: auto;
+  }
+
+  .connect-detail-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-detail-nav div {
+    gap: 0.5rem;
+  }
+
+  .connect-logistics,
+  .connect-sponsor-section {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-hotel-preview {
+    grid-template-columns: minmax(12rem, 0.48fr) minmax(0, 1fr);
+  }
+
+  .connect-poster-dialog {
+    padding: max(0.65rem, env(safe-area-inset-top)) max(0.65rem, env(safe-area-inset-right)) max(0.65rem, env(safe-area-inset-bottom)) max(0.65rem, env(safe-area-inset-left));
+  }
+
+  .connect-poster-dialog-shell {
+    width: min(calc(100vw - 1.3rem), calc((100dvh - 1.3rem) * 0.78));
+    height: min(calc(100dvh - 1.3rem), calc((100vw - 1.3rem) / 0.78));
+  }
+
+  .connect-poster-dialog-close {
+    top: 0.55rem;
+    right: 0.55rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .connect-hero {
+    gap: 0.85rem;
+  }
+
+  .connect-hero-copy {
+    padding: 1rem;
+  }
+
+  .connect-hero-copy h2 {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+
+  .connect-hero-body p {
+    font-size: 0.96rem;
+    line-height: 1.55;
+  }
+
+  .connect-poster-panel {
+    height: min(34rem, calc(100vw + 2rem));
+    padding: 0.5rem;
+  }
+
+  .connect-poster-preview {
+    max-width: min(100%, 23rem);
+    border-radius: 18px;
+  }
+
+  .connect-detail-nav {
+    padding: 0.85rem;
+    border-radius: 24px;
+  }
+
+  .connect-detail-nav > span {
+    font-size: 0.95rem;
+  }
+
+  .connect-detail-nav div {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .connect-detail-nav a {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.55rem;
+    justify-content: center;
+    padding: 0.45rem 0.7rem;
+  }
+
+  .connect-section {
+    padding: 0.9rem;
+    border-radius: 24px;
+  }
+
+  .featured-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-pricing-card li {
+    display: grid;
+    justify-content: stretch;
+  }
+
+  .connect-hotel-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-hotel-preview img {
+    height: min(14rem, 52vw);
+    min-height: 9rem;
+  }
+
+  .connect-tier-tabs {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .connect-schedule-tab {
+    width: 100%;
+  }
+
+  .connect-zeffy-dialog {
+    padding: 0.65rem;
+    align-items: stretch;
+  }
+
+  .zeffy-dialog-shell.connect-zeffy-shell,
+  .zeffy-dialog-shell.connect-zeffy-shell.is-sponsor {
+    width: 100%;
+    border-radius: 20px;
+  }
+
+  .connect-zeffy-frame {
+    height: 76dvh;
+  }
+}
+
+@media (max-width: 420px) {
+  .connect-hero-copy h2 {
+    font-size: clamp(1.9rem, 12vw, 2.45rem);
+  }
+
+  .connect-poster-panel {
+    height: min(31rem, calc(100vw + 4rem));
+  }
+
+  .connect-detail-nav a {
+    min-height: 2.45rem;
+  }
+
+  .connect-free-grid p,
+  .connect-attraction-grid a,
+  .connect-attraction-grid > span {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .connect-poster-dialog {
+    padding: 0.4rem;
+  }
+
+  .connect-poster-dialog-shell {
+    width: min(calc(100vw - 0.8rem), calc((100dvh - 0.8rem) * 0.78));
+    height: min(calc(100dvh - 0.8rem), calc((100vw - 0.8rem) / 0.78));
+    border-radius: 14px;
+  }
+
+  .connect-poster-dialog-close {
+    width: 2.75rem;
+    height: 2.75rem;
   }
 }
 
