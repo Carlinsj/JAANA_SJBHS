@@ -28,6 +28,45 @@ const registrationIframeUrl = "https://www.zeffy.com/embed/ticketing/jaana-north
 const sponsorFormUrl = "/embed/donation-form/north-america-connect-sponsorship";
 const sponsorIframeUrl = "https://www.zeffy.com/embed/donation-form/north-america-connect-sponsorship";
 const sponsorThermometerUrl = "https://www.zeffy.com/embed/thermometer/north-america-connect-sponsorship";
+const connectPosterPdfUrl = "/docs/north-america-connect-2026-poster.pdf";
+const connectPosterImageUrl = "/assets/north-america-connect-2026-poster.png";
+const posterHotspots = [
+  {
+    className: "is-dinner-map",
+    href: "https://maps.app.goo.gl/GGzvULv1g1pSUoYg7?g_st=aw",
+    label: "Open Saturday dinner location"
+  },
+  {
+    className: "is-picnic-map",
+    href: "https://maps.app.goo.gl/hMqWhjRLvm8n3Hhy7?g_st=aw",
+    label: "Open Sunday picnic location"
+  },
+  {
+    className: "is-united-code",
+    href: "https://www.united.com/en/us/book-flight/united-reservations?txtPromoCode=ZSJE201804",
+    label: "Open United Airlines discount"
+  },
+  {
+    className: "is-hotel-booking",
+    href: "https://www.hyatt.com/events/en-US/group-booking/DULLE/G-SJ18",
+    label: "Open Hyatt hotel block booking"
+  },
+  {
+    className: "is-register-button",
+    href: "/#register",
+    label: "Register for North America Connect 2026"
+  },
+  {
+    className: "is-register-footer",
+    href: "/#register",
+    label: "Open registration page"
+  },
+  {
+    className: "is-connect-footer",
+    href: "/#connect",
+    label: "Open Connect details page"
+  }
+];
 
 const attractionPreviewLinks: Record<string, string> = {
   "Monuments & Memorials": "https://www.washington.org/visit-dc/monuments-memorials",
@@ -214,6 +253,47 @@ function ConnectFloatingRegisterButton({ onClick }: { onClick: () => void }) {
   );
 }
 
+function ConnectPosterDialog({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [onClose]);
+
+  return createPortal(
+    <div className="connect-poster-dialog" role="dialog" aria-modal="true" aria-label="North America Connect 2026 poster" onClick={onClose}>
+      <div className="connect-poster-dialog-shell" onClick={(event) => event.stopPropagation()}>
+        <button className="zeffy-dialog-close connect-poster-dialog-close" type="button" onClick={onClose} aria-label="Close poster">
+          ×
+        </button>
+        <div className="connect-poster-dialog-artboard">
+          <img src={connectPosterImageUrl} alt="North America Connect 2026 poster with clickable event links" />
+          {posterHotspots.map((hotspot) => (
+            <a
+              key={hotspot.className}
+              className={`connect-poster-hotspot ${hotspot.className}`}
+              href={hotspot.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={hotspot.label}
+            />
+          ))}
+        </div>
+        <a className="connect-poster-dialog-pdf-link" href={connectPosterPdfUrl} target="_blank" rel="noreferrer">
+          Open original PDF
+        </a>
+      </div>
+    </div>,
+    document.body
+  );
+}
+
 function ScheduleCard({
   item,
   index,
@@ -382,6 +462,7 @@ export function ConnectPage({
   const [dialogType, setDialogType] = useState<ConnectDialogType | null>(null);
   const [activeSponsorTier, setActiveSponsorTier] = useState(0);
   const [showFloatingRegister, setShowFloatingRegister] = useState(false);
+  const [posterDialogOpen, setPosterDialogOpen] = useState(false);
   const heroRegisterButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
@@ -455,11 +536,14 @@ export function ConnectPage({
         </div>
 
         <aside className="connect-event-panel connect-poster-panel">
-          <img
-            className="connect-poster-image"
-            src="/assets/connect-poster-placeholder.svg"
-            alt="North America Connect 2026 poster placeholder"
-          />
+          <button
+            className="connect-poster-preview"
+            type="button"
+            onClick={() => setPosterDialogOpen(true)}
+            aria-label="Open North America Connect 2026 poster full screen"
+          >
+            <img src={connectPosterImageUrl} alt="North America Connect 2026 event poster" />
+          </button>
         </aside>
       </div>
 
@@ -675,9 +759,52 @@ export function ConnectPage({
 
         <article id="connect-stay" className="connect-info-panel connect-stay-panel">
           <h3>Stay</h3>
+          <div className="connect-hotel-preview">
+            <img src={connectContent.stay.hotelImageSrc} alt={connectContent.stay.hotelImageAlt} />
+            <div>
+              <strong>
+                <InlineEditableText
+                  editable={editable}
+                  value={connectContent.stay.hotelName}
+                  onChange={(value) => onChangeConnectContent?.("stay", { ...connectContent.stay, hotelName: value })}
+                  className="section-title-edit"
+                  ariaLabel="Hotel name"
+                />
+              </strong>
+              <p>
+                <InlineEditableText
+                  editable={editable}
+                  value={connectContent.stay.address}
+                  onChange={(value) => onChangeConnectContent?.("stay", { ...connectContent.stay, address: value })}
+                  className="body-copy-edit"
+                  ariaLabel="Hotel address"
+                />
+              </p>
+              {editable ? (
+                <div className="connect-admin-field-stack">
+                  <InlineEditableText
+                    editable
+                    value={connectContent.stay.hotelImageSrc}
+                    onChange={(value) => onChangeConnectContent?.("stay", { ...connectContent.stay, hotelImageSrc: value })}
+                    className="body-copy-edit"
+                    placeholder="Hotel image path"
+                    ariaLabel="Hotel image path"
+                  />
+                  <InlineEditableText
+                    editable
+                    value={connectContent.stay.hotelImageAlt}
+                    onChange={(value) => onChangeConnectContent?.("stay", { ...connectContent.stay, hotelImageAlt: value })}
+                    className="body-copy-edit"
+                    placeholder="Hotel image alt text"
+                    ariaLabel="Hotel image alt text"
+                  />
+                </div>
+              ) : null}
+            </div>
+          </div>
           <dl className="connect-detail-list">
             <div>
-              <dt>Hotel Block</dt>
+              <dt>Group Code</dt>
               <dd>
                 {hotelBlockHref && !editable ? (
                   <a className="inline-link" href={hotelBlockHref} target="_blank" rel="noreferrer">
@@ -707,9 +834,9 @@ export function ConnectPage({
                 ) : null}
               </dd>
             </div>
-            {(["hotelName", "address", "contact", "courtesyBlock", "shuttle"] as const).map((field) => (
+            {(["courtesyBlock", "shuttle"] as const).map((field) => (
               <div key={field}>
-                <dt>{field === "hotelName" ? "Hotel" : field === "courtesyBlock" ? "Courtesy Block" : field.charAt(0).toUpperCase() + field.slice(1)}</dt>
+                <dt>{field === "courtesyBlock" ? "Room Block" : field.charAt(0).toUpperCase() + field.slice(1)}</dt>
                 <dd>
                   <InlineEditableText
                     editable={editable}
@@ -890,6 +1017,7 @@ export function ConnectPage({
       {!editable && showFloatingRegister ? <ConnectFloatingRegisterButton onClick={() => setDialogType("registration")} /> : null}
 
       <ConnectZeffyDialog type={dialogType} connectContent={connectContent} onClose={() => setDialogType(null)} />
+      {posterDialogOpen ? <ConnectPosterDialog onClose={() => setPosterDialogOpen(false)} /> : null}
     </section>
   );
 }

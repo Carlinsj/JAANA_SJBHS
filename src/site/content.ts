@@ -41,9 +41,9 @@ export const tabs: TabConfig[] = [
     id: "causes",
     label: "Causes",
     kicker: "Causes",
-    title: "Choose the causes JAANA can support for St. Joseph's Boys' High School.",
+    title: "Causes We Support",
     copy:
-      ""
+      "The Josephite Alumni Association of North America (JAANA), in partnership with The Old Boys' Association (OBA) of St. Joseph's Boys' High School, remains steadfast in its commitment to supporting students, teachers, and the School through structured, transparent, and high-impact initiatives."
   },
   {
     id: "donate",
@@ -121,88 +121,86 @@ export const priorityCards: PriorityCard[] = [
 export const causeCards: CauseCard[] = [
   {
     title: "Student Scholarships",
-    summary: "Help students remain at SJBHS and continue their education without financial interruption.",
-    minimum: "From $6",
-    purpose: "Make sure students who need financial aid can continue at SJBHS with dignity, stability, and continuity.",
-    goal: "Goal: $120,000 annually",
-    impact: "Impact: 114 students were supported in Academic Year 2024-25.",
+    summary: "Enable students requiring financial aid to pursue their education goals at SJBHS.",
+    minimum: "",
+    purpose: "Enable students requiring financial aid to pursue their education goals at SJBHS with dignity, stability, and continuity.",
+    goal: "Goal: $120,000 / year",
+    impact: "Impact: 114 students supported.",
     support: [
-      "Loyola Scholarship Scheme: annual commitment of $900 per scholar for 10 years.",
-      "General grants from $6 and multiples thereof.",
-      "Endowment fund minimum of $6,000 for recurring annual support."
+      "Grant: $800 supports one student for one school year.",
+      "Endowment: $16,000 supports a student on a recurring basis."
     ],
     donationWays: [
       "Make a one-time grant to support students immediately.",
       "Create longer-term recurring impact through an endowment commitment.",
-      "Smaller gifts can still be directed to scholarships through the standard donation route."
+      "Direct a gift to scholarships through the standard donation route."
     ]
   },
   {
     title: "Teachers Insurance Program",
     summary: "Protect teaching staff, support staff, retired staff, and eligible families through insurance coverage.",
-    minimum: "From $6",
+    minimum: "",
     purpose:
-      "Provide health and personal accident coverage for teaching staff, support staff, retired staff, and eligible family members.",
-    goal: "Goal: $35,000 annually",
+      "Provide teaching staff, support staff, retired staff, and their families with comprehensive health and personal accident insurance cover.",
+    goal: "Goal: $35,000 / year",
     impact:
-      "Impact: health insurance coverage for 540 lives, plus personal accident coverage for 180 teaching staff.",
+      "Impact: health insurance coverage for 540 staff and family members, plus personal accident insurance coverage for 180 teaching staff.",
     support: [
-      "General grants from $6 and multiples thereof.",
-      "Endowment fund minimum of $6,000 for recurring annual support."
+      "Grant: $200 supports one staff member, spouse, and dependents for one year.",
+      "Endowment: $4,000 provides recurring annual support."
     ],
     donationWays: [
       "Fund the current insurance cycle through a one-time grant.",
       "Build recurring support through an endowment contribution.",
-      "Smaller gifts can still be routed toward teacher welfare through the standard donation process."
+      "Direct a gift to teacher welfare through the standard donation process."
     ]
   },
   {
     title: "Mid-Day Meal Program",
-    summary: "Help provide a nourishing meal to children each school day.",
-    minimum: "From $6",
-    purpose: "Support a dependable mid-day meal programme that helps children learn and grow well.",
-    goal: "Goal: $25,000 annually",
-    impact: "Impact: 3,000 meals were supported in Academic Year 2024-25.",
+    summary: "Provide students requiring financial aid with nourishing meals at school.",
+    minimum: "",
+    purpose: "Provide students requiring financial aid with nourishing meals at school so they can learn and grow well.",
+    goal: "Goal: $25,000 / year",
+    impact: "Impact: 3,000 meals provided annually.",
     support: [
-      "General grants from $6 and multiples thereof.",
-      "Endowment fund minimum of $6,000 for recurring annual support."
+      "Grant: $150 provides meals to one student for one year.",
+      "Endowment: $3,000 provides recurring annual support."
     ],
     donationWays: [
       "Make a one-time grant to fund meals now.",
       "Use an endowment route to create recurring annual support.",
-      "Smaller gifts can still be applied to the programme through the standard donation route."
+      "Direct a gift to the meal program through the standard donation route."
     ]
   },
   {
     title: "Student Awards Program",
-    summary: "Back prizes and recognition that celebrate excellence in academics, sport, and the arts.",
-    minimum: "$1,200 endowment",
-    purpose: "Strengthen aspiration, confidence, and recognition across school life through well-timed annual awards.",
-    goal: "Goal: build an awards system that strengthens recognition, morale, and aspiration.",
+    summary: "Recognize and reward students excelling in academics, sports, and the arts.",
+    minimum: "",
+    purpose: "Recognize and reward students excelling in academics, sports, and the arts.",
+    goal: "Goal: an awards system that drives excellence.",
     impact:
-      "Impact: awards at key stages of school life reinforce confidence, achievement, and continuity across the student journey.",
+      "Impact: students receive awards in strategic classes and levels, boosting morale and confidence at the right time.",
     support: [
-      "Endowment fund minimum of $1,200, with proceeds awarded annually.",
-      "Useful for donors who want named recognition attached to a recurring annual prize."
+      "Awards typically range between $300 and $500 per award annually.",
+      "Endowment funds can be set up for recurring support.",
+      "Named donor-backed prizes work especially well for this program."
     ],
     donationWays: [
       "Endowment support is the primary route for recurring annual awards.",
-      "Named donor-backed prizes work especially well here.",
       "This cause suits donors who want visible, long-term recognition tied to student excellence."
     ]
   },
   {
     title: "School Infrastructure Development",
     summary: "Support classrooms, laboratories, sports facilities, and other campus development needs.",
-    minimum: "From $6",
-    purpose: "Help improve the physical spaces where students learn, compete, and build community.",
-    goal: "Goal: $2,750,000",
+    minimum: "",
+    purpose: "Support development of school infrastructure such as classrooms, a sports complex, laboratories, and other campus needs.",
+    goal: "Goal: $3,000,000",
     impact:
       "Impact: legacy-led contributions can fund named learning spaces and long-term improvements across the school campus.",
     support: [
-      "Name a classroom: $30,000.",
-      "Name on a pillar or pavilion plaque: $6,000.",
-      "General grants from $6 and multiples thereof."
+      "Name a classroom: $30,000, payable over 3 years.",
+      "Plaque on a pillar or pavilion: $6,000."
     ],
     donationWays: [
       "Make a one-time grant for immediate capital support.",
@@ -212,17 +210,17 @@ export const causeCards: CauseCard[] = [
   },
   {
     title: "Other Jesuit causes",
-    summary: "Direct support to allied BJES and Josephite causes beyond the core OBA priorities.",
-    minimum: "From $6",
+    summary: "Support other BJES education causes, including St. Joseph's Panditahalli and allied schools.",
+    minimum: "",
     purpose:
-      "Support allied BJES and Josephite causes when donors want to direct their giving beyond the core OBA school-support priorities.",
-    goal: "Goal: donor-directed support routed through the same compliant USA donation process.",
+      "Support other BJES causes in the field of education, including initiatives for St. Joseph's Panditahalli and other allied schools.",
+    goal: "Goal: donor-directed support for allied Jesuit education causes.",
     impact:
-      "Impact: allied causes can be acknowledged in OBA communications and the annual report with credit to donors.",
+      "Impact: donors can extend support beyond the core OBA priorities to allied schools and education initiatives.",
     support: [
+      "Directed gifts can support St. Joseph's Panditahalli and allied schools.",
       "Use the donation agreement to specify the intended end use clearly.",
-      "Suitable for individual, family, or batch-led contributions supporting allied Jesuit work.",
-      "The same endowment, grant, and donation routes apply."
+      "Suitable for individual, family, or batch-led contributions supporting allied Jesuit work."
     ],
     donationWays: [
       "Use the donation agreement to state the exact Jesuit or BJES cause you want supported.",
@@ -396,19 +394,19 @@ export const sponsorTiers: SponsorTier[] = [
 
 export const connectMoments: GalleryImage[] = [
   {
-    src: "/assets/connect-group-night.jpg",
-    alt: "A large OBA community group gathered outdoors at night under string lights.",
-    caption: "Recent Connect gatherings show the warmth, scale, and energy this community already brings together."
+    src: "/assets/us-reunion-tent-2018.jpg",
+    alt: "Josephite alumni and families gathered outdoors in front of a striped reunion tent.",
+    caption: "A past US reunion picnic shows the scale, warmth, and community spirit that Connect gatherings bring together."
   },
   {
-    src: "/assets/connect-group-steps.jpg",
-    alt: "A multi-generational alumni group standing on steps outside a heritage building.",
-    caption: "Past Connect moments reflect the multi-generational character of the SJBHS alumni community."
+    src: "/assets/us-reunion-pavilion-2016.jpg",
+    alt: "A younger group of Josephite alumni gathered at a US reunion pavilion.",
+    caption: "US reunions have always brought younger Josephites into the fold alongside the wider alumni community."
   },
   {
-    src: "/assets/connect-carols.jpg",
-    alt: "A group singing together at a festive OBA Christmas gathering.",
-    caption: "Family participation and school-centered fellowship remain central to the Connect tradition."
+    src: "/assets/us-reunion-banquet-2019.jpg",
+    alt: "A large Josephite alumni group posing together at an indoor US reunion evening event.",
+    caption: "Evening reunion events keep the school connection alive across generations and geographies."
   },
   {
     src: "/assets/connect-uk-table.jpg",
@@ -846,7 +844,7 @@ export const connectPlaceholders: SecondaryPage[] = [
   {
     title: "Travel and Stay",
     body:
-      "Recommended airport: IAD. United promo code ZSJE201804 is applicable for travel to/from IAD between 9/18-9/21. Other airports: DCA and BWI. Hotel block details, hotel name, address, contact, and courtesy block date will be published as they are finalized."
+      "Recommended airport: IAD. United promo code ZSJE201804 is applicable for travel to/from IAD between 9/18-9/21. The hotel room block is at Hyatt Regency Dulles with group code G-SJ18 and is available on a first come basis through Aug 21 2026."
   },
   {
     title: "Josephite Merchandise",
@@ -885,12 +883,14 @@ export const defaultConnectPageContent: ConnectPageContent = {
     otherAirports: ["DCA", "BWI"]
   },
   stay: {
-    hotelBlockLabel: "Exclusive hotel-block link",
-    hotelBlockHref: "",
-    hotelName: "Hotel details coming soon",
-    address: "Address coming soon",
-    contact: "Contact coming soon",
-    courtesyBlock: "Courtesy hotel block available on a first come basis through a date to be announced.",
+    hotelBlockLabel: "Group Code: G-SJ18",
+    hotelBlockHref: "https://www.hyatt.com/events/en-US/group-booking/DULLE/G-SJ18",
+    hotelName: "Hyatt Regency Dulles",
+    address: "2300 Dulles Corner Blvd., Herndon, VA 20171",
+    hotelImageSrc: "/assets/hyatt-regency-dulles-exterior.jpg",
+    hotelImageAlt: "Exterior of Hyatt Regency Dulles",
+    contact: "Book through the Hyatt group link.",
+    courtesyBlock: "Hotel room block available on a first come basis through Aug 21 2026.",
     shuttle: "Complimentary shuttle to and from IAD."
   },
   schedule: [

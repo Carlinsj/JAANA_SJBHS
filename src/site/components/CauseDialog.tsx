@@ -28,6 +28,9 @@ export function CauseDialog({
 }: CauseDialogProps) {
   const goal = cause.goal.replace(/^Goal:\s*/, "");
   const impact = cause.impact.replace(/^Impact:\s*/, "");
+  const targetClassName = goal.includes("$")
+    ? "cause-dialog-target-value is-currency"
+    : "cause-dialog-target-value";
 
   useEffect(() => {
     if (disableEscape) {
@@ -84,20 +87,8 @@ export function CauseDialog({
           <aside className="cause-dialog-panel cause-dialog-summary-panel" aria-label="Funding details">
             <dl className="cause-dialog-summary-metrics">
               <div>
-                <dt>Minimum amount</dt>
-                <dd className="cause-dialog-minimum">
-                  <InlineEditableText
-                    editable={editable}
-                    value={cause.minimum}
-                    onChange={(value) => onChangeCause?.("minimum", value)}
-                    className="cause-minimum-edit"
-                  />
-                </dd>
-              </div>
-
-              <div>
                 <dt>Target</dt>
-                <dd>
+                <dd className={targetClassName}>
                   <InlineEditableText
                     editable={editable}
                     value={editable ? cause.goal : goal}
@@ -126,7 +117,7 @@ export function CauseDialog({
             </div>
 
             <div className="cause-dialog-section">
-              <h4>Where support can go</h4>
+              <h4>Unit cost and support options</h4>
               <ul className="detail-list">
                 {cause.support.map((item, index) => (
                   <li key={`support-${index}`} className={editable ? "detail-list-edit-item" : undefined}>

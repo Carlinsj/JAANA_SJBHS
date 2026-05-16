@@ -9,7 +9,7 @@ type CausesPageProps = {
   editable?: boolean;
   onChangeDetails?: <K extends keyof TabConfig>(key: K, value: TabConfig[K]) => void;
   onChangeCausesCopy?: <K extends keyof CausesPageCopy>(key: K, value: CausesPageCopy[K]) => void;
-  onChangeCauseCard?: (index: number, key: "title" | "summary" | "minimum", value: string) => void;
+  onChangeCauseCard?: (index: number, key: "title" | "summary" | "goal", value: string) => void;
   onDeleteCause?: (index: number) => void;
   causeFormOpen?: boolean;
   newCauseTitle?: string;
@@ -48,6 +48,19 @@ export function CausesPage({
               className="section-title-edit"
             />
           </h2>
+          {details.copy || editable ? (
+            <div className="body-copy causes-page-intro">
+              <InlineEditableText
+                editable={editable}
+                value={details.copy}
+                onChange={(value) => onChangeDetails?.("copy", value)}
+                multiline
+                richText
+                className="body-copy-edit"
+                placeholder="Add page introduction."
+              />
+            </div>
+          ) : null}
         </div>
       </div>
 
@@ -78,12 +91,12 @@ export function CausesPage({
                 </div>
 
                 <div className="cause-list-meta">
-                  <span>Minimum amount</span>
+                  <span>Goal</span>
                   <strong>
                     <InlineEditableText
                       editable={editable}
-                      value={cause.minimum}
-                      onChange={(value) => onChangeCauseCard?.(index, "minimum", value)}
+                      value={cause.goal}
+                      onChange={(value) => onChangeCauseCard?.(index, "goal", value)}
                       className="cause-minimum-edit"
                     />
                   </strong>
@@ -107,8 +120,8 @@ export function CausesPage({
                 </div>
 
                 <div className="cause-list-meta">
-                  <span>Minimum amount</span>
-                  <strong>{cause.minimum}</strong>
+                  <span>Goal</span>
+                  <strong>{cause.goal.replace(/^Goal:\s*/, "")}</strong>
                 </div>
               </button>
             )
