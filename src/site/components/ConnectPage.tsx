@@ -47,11 +47,19 @@ const attractionPreviewLinks: Record<string, string> = {
   "DC Nightlife": "https://washington.org/visit-dc/entertainment-nightlife"
 };
 
+const airportWebsiteLinks: Record<string, string> = {
+  BWI: "https://bwiairport.com/",
+  DCA: "https://www.flyreagan.com/",
+  IAD: "https://www.flydulles.com/"
+};
+
 const sectionAnchors: Record<string, string> = {
   pricing: "connect-pricing",
   schedule: "connect-schedule",
   travel: "connect-travel",
   stay: "connect-stay",
+  "travel-stay": "connect-travel",
+  "travel-and-stay": "connect-travel",
   "josephite-merchandise": "connect-merchandise",
   "local-attractions": "connect-attractions",
   sponsor: "connect-sponsors",
@@ -88,6 +96,10 @@ function resolveHref(value: string) {
   }
 
   return `https://${trimmedValue}`;
+}
+
+function airportWebsiteHref(airportCode: string) {
+  return airportWebsiteLinks[airportCode.trim().toUpperCase()] ?? "";
 }
 
 function attractionPreviewUrl(attraction: string) {
@@ -393,9 +405,7 @@ function SponsorCard({
           <a className="inline-link" href={sponsorHref} target="_blank" rel="noreferrer">
             Website
           </a>
-        ) : (
-          <span className="connect-coming-soon">Website coming soon</span>
-        )}
+        ) : null}
       </div>
     </article>
   );
@@ -452,6 +462,7 @@ export function ConnectPage({
   const unitedDiscountHref = resolveHref(connectContent.travel.discountHref);
   const unitedPromoCode = promoCodeFromLabel(connectContent.travel.discountLabel);
   const hotelBlockHref = resolveHref(connectContent.stay.hotelBlockHref);
+  const recommendedAirportHref = airportWebsiteHref(connectContent.travel.recommendedAirport);
 
   return (
     <section id="connect-panel" className="subpage-shell" role="tabpanel" aria-label="North America Connect 2026">
@@ -639,17 +650,48 @@ export function ConnectPage({
           <h3>Travel</h3>
           <div className="connect-travel-layout">
             <div className="connect-airport-summary">
-              <span>Recommended airport</span>
-              <strong>
-                <InlineEditableText
-                  editable={editable}
-                  value={connectContent.travel.recommendedAirport}
-                  onChange={(value) => onChangeConnectContent?.("travel", { ...connectContent.travel, recommendedAirport: value })}
-                  className="body-copy-edit"
-                  ariaLabel="Recommended airport"
-                />
-              </strong>
-              <p>Best arrival point for the Washington, D.C. metro area events.</p>
+              <div className="connect-airport-copy">
+                <span>Recommended airport</span>
+                <strong>
+                  {recommendedAirportHref && !editable ? (
+                    <a className="connect-airport-link" href={recommendedAirportHref} target="_blank" rel="noreferrer">
+                      {connectContent.travel.recommendedAirport}
+                    </a>
+                  ) : (
+                    <InlineEditableText
+                      editable={editable}
+                      value={connectContent.travel.recommendedAirport}
+                      onChange={(value) => onChangeConnectContent?.("travel", { ...connectContent.travel, recommendedAirport: value })}
+                      className="body-copy-edit"
+                      ariaLabel="Recommended airport"
+                    />
+                  )}
+                </strong>
+                <p>Best arrival point for the Washington, D.C. metro area events.</p>
+                {editable ? (
+                  <div className="connect-admin-field-stack">
+                    <InlineEditableText
+                      editable
+                      value={connectContent.travel.airportImageSrc}
+                      onChange={(value) => onChangeConnectContent?.("travel", { ...connectContent.travel, airportImageSrc: value })}
+                      className="body-copy-edit"
+                      placeholder="Airport image path"
+                      ariaLabel="Airport image path"
+                    />
+                    <InlineEditableText
+                      editable
+                      value={connectContent.travel.airportImageAlt}
+                      onChange={(value) => onChangeConnectContent?.("travel", { ...connectContent.travel, airportImageAlt: value })}
+                      className="body-copy-edit"
+                      placeholder="Airport image alt text"
+                      ariaLabel="Airport image alt text"
+                    />
+                  </div>
+                ) : null}
+              </div>
+              <figure className="connect-airport-glimpse">
+                <img src={connectContent.travel.airportImageSrc} alt={connectContent.travel.airportImageAlt} />
+              </figure>
             </div>
 
             <div className="connect-travel-secondary">
@@ -687,22 +729,33 @@ export function ConnectPage({
               <div className="connect-airport-options">
                 <span>Other airports</span>
                 <div className="connect-inline-list">
-                {connectContent.travel.otherAirports.map((airport, airportIndex) => (
-                  <span key={`${airport}-${airportIndex}`}>
-                    <InlineEditableText
-                      editable={editable}
-                      value={airport}
-                      onChange={(value) =>
-                        onChangeConnectContent?.("travel", {
-                          ...connectContent.travel,
-                          otherAirports: updateStringItem(connectContent.travel.otherAirports, airportIndex, value)
-                        })
-                      }
-                      className="body-copy-edit"
-                      ariaLabel={`Other airport ${airportIndex + 1}`}
-                    />
-                  </span>
-                ))}
+                {connectContent.travel.otherAirports.map((airport, airportIndex) => {
+                  const airportHref = airportWebsiteHref(airport);
+                  const isLinkedAirport = Boolean(airportHref) && !editable;
+
+                  return (
+                    <span className={isLinkedAirport ? "connect-airport-chip" : undefined} key={`${airport}-${airportIndex}`}>
+                      {isLinkedAirport ? (
+                        <a className="connect-airport-chip-link" href={airportHref} target="_blank" rel="noreferrer">
+                          {airport}
+                        </a>
+                      ) : (
+                        <InlineEditableText
+                          editable={editable}
+                          value={airport}
+                          onChange={(value) =>
+                            onChangeConnectContent?.("travel", {
+                              ...connectContent.travel,
+                              otherAirports: updateStringItem(connectContent.travel.otherAirports, airportIndex, value)
+                            })
+                          }
+                          className="body-copy-edit"
+                          ariaLabel={`Other airport ${airportIndex + 1}`}
+                        />
+                      )}
+                    </span>
+                  );
+                })}
                 </div>
               </div>
             </div>
@@ -755,7 +808,7 @@ export function ConnectPage({
             </div>
           </div>
           <dl className="connect-detail-list">
-            <div>
+            <div className="connect-stay-detail connect-stay-detail--group-code">
               <dt>Group Code</dt>
               <dd>
                 {hotelBlockHref && !editable ? (
@@ -786,20 +839,35 @@ export function ConnectPage({
                 ) : null}
               </dd>
             </div>
-            {(["courtesyBlock", "shuttle"] as const).map((field) => (
-              <div key={field}>
-                <dt>{field === "courtesyBlock" ? "Room Block" : field.charAt(0).toUpperCase() + field.slice(1)}</dt>
-                <dd>
-                  <InlineEditableText
-                    editable={editable}
-                    value={connectContent.stay[field]}
-                    onChange={(value) => onChangeConnectContent?.("stay", { ...connectContent.stay, [field]: value })}
-                    className="body-copy-edit"
-                    ariaLabel={`Stay ${field}`}
-                  />
-                </dd>
-              </div>
-            ))}
+            <div className="connect-stay-detail connect-stay-detail--room-block">
+              <dt>Room Block</dt>
+              <dd>
+                <InlineEditableText
+                  editable={editable}
+                  value={connectContent.stay.courtesyBlock}
+                  onChange={(value) => onChangeConnectContent?.("stay", { ...connectContent.stay, courtesyBlock: value })}
+                  className="body-copy-edit"
+                  ariaLabel="Stay room block"
+                />
+              </dd>
+            </div>
+          </dl>
+        </article>
+
+        <article className="connect-shuttle-panel" aria-label="Travel and hotel shuttle details">
+          <dl className="connect-detail-list">
+            <div className="connect-shuttle-detail">
+              <dt>Shuttle:</dt>
+              <dd>
+                <InlineEditableText
+                  editable={editable}
+                  value={connectContent.stay.shuttle}
+                  onChange={(value) => onChangeConnectContent?.("stay", { ...connectContent.stay, shuttle: value })}
+                  className="body-copy-edit"
+                  ariaLabel="Stay shuttle"
+                />
+              </dd>
+            </div>
           </dl>
         </article>
       </section>
