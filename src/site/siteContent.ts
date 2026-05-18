@@ -341,6 +341,14 @@ function normalizeTravelContent(
       typeof travel?.recommendedAirport === "string" && travel.recommendedAirport.trim()
         ? travel.recommendedAirport.trim()
         : fallback.recommendedAirport,
+    airportImageSrc:
+      typeof travel?.airportImageSrc === "string" && travel.airportImageSrc.trim()
+        ? travel.airportImageSrc.trim()
+        : fallback.airportImageSrc,
+    airportImageAlt:
+      typeof travel?.airportImageAlt === "string" && travel.airportImageAlt.trim()
+        ? travel.airportImageAlt.trim()
+        : fallback.airportImageAlt,
     discountLabel:
       typeof travel?.discountLabel === "string" && travel.discountLabel.trim()
         ? travel.discountLabel.trim()

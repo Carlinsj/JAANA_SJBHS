@@ -859,7 +859,7 @@ export const connectPlaceholders: SecondaryPage[] = [
 
 export const defaultConnectPageContent: ConnectPageContent = {
   sponsorMessage: defaultConnectSponsorMessage,
-  detailLinks: ["Pricing", "Schedule", "Travel", "Stay", "Josephite Merchandise", "Local Attractions", "Sponsor"],
+  detailLinks: ["Pricing", "Schedule", "Travel & Stay", "Josephite Merchandise", "Local Attractions", "Sponsor"],
   pricing: [
     {
       title: "Early Bird Pricing",
@@ -878,6 +878,8 @@ export const defaultConnectPageContent: ConnectPageContent = {
   ],
   travel: {
     recommendedAirport: "IAD",
+    airportImageSrc: "/assets/dulles-airport-terminal.jpg",
+    airportImageAlt: "Main terminal of Washington Dulles International Airport",
     discountLabel: "Promo Code: ZSJE201804 (valid for travel to/from IAD between 9/18-9/21)",
     discountHref: "https://www.united.com/en/us/book-flight/united-reservations?txtPromoCode=ZSJE201804",
     otherAirports: ["DCA", "BWI"]
@@ -891,7 +893,7 @@ export const defaultConnectPageContent: ConnectPageContent = {
     hotelImageAlt: "Exterior of Hyatt Regency Dulles",
     contact: "Book through the Hyatt group link.",
     courtesyBlock: "Hotel room block available on a first come basis through Aug 21 2026.",
-    shuttle: "Complimentary shuttle to and from IAD."
+    shuttle: "Complimentary shuttle service is provided between IAD and Hyatt Regency Dulles."
   },
   schedule: [
     {

@@ -134,6 +134,8 @@ export type ConnectPricingGroup = {
 
 export type ConnectTravelContent = {
   recommendedAirport: string;
+  airportImageSrc: string;
+  airportImageAlt: string;
   discountLabel: string;
   discountHref: string;
   otherAirports: string[];
